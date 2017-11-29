@@ -1,0 +1,158 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.carrotgarden.a</groupId>
+        <artifactId>carrot-a</artifactId>
+        <version>0-SNAPSHOT</version>
+        <relativePath>a</relativePath>
+    </parent>
+
+    <groupId>com.carrotgarden.maven</groupId>
+    <artifactId>flatten-maven-plugin</artifactId>
+    <version>${revision}</version>
+    <packaging>maven-plugin</packaging>
+
+    <url>https://github.com/random-maven/flatten-maven-plugin</url>
+
+    <scm>
+        <url>https://github.com/random-maven/flatten-maven-plugin</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+        </license>
+    </licenses>
+
+    <name>Flatten Maven Plugin</name>
+    <description>Simplify maven project descriptor for publication</description>
+
+    <properties>
+        <release.epoch>1.0</release.epoch>
+        <version.maven>3.5.0</version.maven>
+        <bintray.subject>random-maven</bintray.subject>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${version.maven}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>${version.maven}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-compat</artifactId>
+            <version>${version.maven}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.twdata.maven</groupId>
+            <artifactId>mojo-executor</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Expose pom.xml data. -->
+            <!-- <plugin> -->
+            <!-- <groupId>org.codehaus.mojo</groupId> -->
+            <!-- <artifactId>flatten-maven-plugin</artifactId> -->
+            <!-- <configuration> -->
+            <!-- <flattenMode>oss</flattenMode> -->
+            <!-- </configuration> -->
+            <!-- </plugin> -->
+
+            <!-- <plugin> -->
+            <!-- <groupId>com.carrotgarden.maven</groupId> -->
+            <!-- <artifactId>flatten-maven-plugin</artifactId> -->
+            <!-- <configuration> -->
+            <!-- <packagingSwitchList> -->
+            <!-- <packaging>maven-plugin</packaging> -->
+            <!-- </packagingSwitchList> -->
+            <!-- </configuration> -->
+            <!-- </plugin> -->
+
+            <!-- Generate plugin descriptor. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <configuration>
+                    <goalPrefix>flatten</goalPrefix>
+                </configuration>
+            </plugin>
+
+            <!-- Invoke integration tests. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <configuration>
+                    <showErrors>true</showErrors>
+                    <streamLogs>true</streamLogs>
+                    <goals>
+                        <goal>clean</goal>
+                        <!-- <goal>package</goal> -->
+                        <!-- <goal>flatten:flatten</goal> -->
+                        <goal>install</goal>
+                    </goals>
+                </configuration>
+            </plugin>
+
+            <!-- Generate documentation site. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+
+
+            <!-- Deploy documentation site to github. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-dir</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="${basedir}/docs/">
+                                    <fileset dir="${basedir}/target/site/" />
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

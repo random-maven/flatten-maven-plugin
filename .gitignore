@@ -1,0 +1,9 @@
+
+.project
+.settings/
+.classpath
+
+bin/
+target/
+
+pom.xml.flatten

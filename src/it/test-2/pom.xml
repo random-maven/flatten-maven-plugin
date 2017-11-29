@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.carrotgarden.a</groupId>
+        <artifactId>carrot-a</artifactId>
+        <version>0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.carrotgarden.maven</groupId>
+    <artifactId>flatten-maven-plugin-test-2</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
+
+    <url>http://test-2</url>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.carrotgarden.util</groupId>
+            <artifactId>carrot-util-values</artifactId>
+            <version>[1,2)</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>[4,5)</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>test-2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.carrotgarden.maven</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>@project.version@</version>
+                <configuration>
+                    <memberRemoveList>
+                        <member>parent</member>
+                        <member>properties</member>
+                        <member>dependencyManagement</member>
+                        <member>repositories</member>
+                        <member>pluginRepositories</member>
+                        <member>build</member>
+                        <member>profiles</member>
+                        <member>reporting</member>
+                    </memberRemoveList>
+                    <includeScope>test</includeScope>
+                    <excludeTransitive>false</excludeTransitive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
