@@ -402,6 +402,9 @@ public class FlattenMojo extends AbstractMojo {
 		try {
 			buildContext.removeMessages(sourcePomFile);
 
+			// after clone():
+			// do not interpolate anything any more 
+			// only remove content or add static content
 			final Model model = project.getModel().clone();
 
 			// Change pom.xml

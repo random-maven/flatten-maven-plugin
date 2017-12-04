@@ -1,6 +1,3 @@
-#
-# Available extension settings with default values.
-#
 
 # Reduce logging.
 quiet = true
