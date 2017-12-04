@@ -7,7 +7,7 @@
         <groupId>com.carrotgarden.a</groupId>
         <artifactId>carrot-a</artifactId>
         <version>0-SNAPSHOT</version>
-        <relativePath>a</relativePath>
+        <relativePath>.mvn</relativePath>
     </parent>
 
     <groupId>com.carrotgarden.maven</groupId>
@@ -31,9 +31,10 @@
     <description>Simplify maven project descriptor for publication</description>
 
     <properties>
-        <release.epoch>1.0</release.epoch>
-        <version.maven>3.5.0</version.maven>
+        <release.epoch>1.1</release.epoch>
+        <version.maven>3.5.2</version.maven>
         <bintray.subject>random-maven</bintray.subject>
+        <bintray.repository>maven</bintray.repository>
     </properties>
 
     <dependencies>
@@ -74,29 +75,16 @@
             <version>3.0.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.sonatype.plexus</groupId>
+            <artifactId>plexus-build-api</artifactId>
+            <version>0.0.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
-
-            <!-- Expose pom.xml data. -->
-            <!-- <plugin> -->
-            <!-- <groupId>org.codehaus.mojo</groupId> -->
-            <!-- <artifactId>flatten-maven-plugin</artifactId> -->
-            <!-- <configuration> -->
-            <!-- <flattenMode>oss</flattenMode> -->
-            <!-- </configuration> -->
-            <!-- </plugin> -->
-
-            <!-- <plugin> -->
-            <!-- <groupId>com.carrotgarden.maven</groupId> -->
-            <!-- <artifactId>flatten-maven-plugin</artifactId> -->
-            <!-- <configuration> -->
-            <!-- <packagingSwitchList> -->
-            <!-- <packaging>maven-plugin</packaging> -->
-            <!-- </packagingSwitchList> -->
-            <!-- </configuration> -->
-            <!-- </plugin> -->
 
             <!-- Generate plugin descriptor. -->
             <plugin>

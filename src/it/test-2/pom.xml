@@ -62,6 +62,8 @@
                     </memberRemoveList>
                     <includeScope>test</includeScope>
                     <excludeTransitive>false</excludeTransitive>
+                    <performOverrideIdentity>true</performOverrideIdentity>
+                    <overrideArtifactId>${project.artifactId}_2.12</overrideArtifactId>
                 </configuration>
             </plugin>
         </plugins>

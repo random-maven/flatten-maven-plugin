@@ -1,5 +1,5 @@
 
-### flatten-maven-plugin
+### Flatten Maven Plugin
 
 [![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/mojohaus/versions-maven-plugin.svg?label=License)](http://www.apache.org/licenses/)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.carrotgarden.maven/flatten-maven-plugin/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.carrotgarden.maven/flatten-maven-plugin) 
@@ -9,6 +9,7 @@ Similar plugins
 * [mojohaus/flatten-maven-plugin](https://github.com/mojohaus/flatten-maven-plugin)
 
 Plugin features
+* replaces published identity
 * resolves dependency version ranges
 * excludes dependencies based on scope
 * optionally includes transitive dependencies
@@ -18,7 +19,14 @@ Plugin features
 Maven goals
 * [flatten:flatten](https://random-maven.github.io/flatten-maven-plugin/flatten-mojo.html)
 
-Usage example
+### Usage examples
+
+####  `flatten:flatten` - produce deployment pom.xml
+
+```
+mvn clean package -P flatten
+```
+
 ```xml
         <profile>
             <id>flatten</id>
@@ -28,6 +36,12 @@ Usage example
                         <groupId>com.carrotgarden.maven</groupId>
                         <artifactId>flatten-maven-plugin</artifactId>
                         <configuration>
+
+                            <!-- Control dependency resolution. -->
+                            <performDependencyResolve>true</performDependencyResolve>
+                            <includeScope>runtime</includeScope>
+                            <excludeTransitive>false</excludeTransitive>
+
                             <!-- Remove these pom.xml members. -->
                             <performRemoveMembers>true</performRemoveMembers>
                             <memberRemoveList>
@@ -41,14 +55,17 @@ Usage example
                                 <member>profiles</member>
                                 <member>reporting</member>
                             </memberRemoveList>
-                            <!-- Control dependency resolution. -->
-                            <performDependencyResolve>true</performDependencyResolve>
-                            <includeScope>runtime</includeScope>
-                            <!-- Replace pom.xml for deployment. -->
+
+                            <!-- Change published artifact identity. -->
+                            <performOverrideIdentity>true</performOverrideIdentity>
+                            <overrideArtifactId>${project.artifactId}_2.12</overrideArtifactId>
+
+                            <!-- Replace project pom.xml for deployment. -->
                             <performSwitchPomXml>true</performSwitchPomXml>
                             <packagingSwitchList>
                                 <packaging>jar</packaging>
                             </packagingSwitchList>
+
                         </configuration>
                         <executions>
                             <execution>

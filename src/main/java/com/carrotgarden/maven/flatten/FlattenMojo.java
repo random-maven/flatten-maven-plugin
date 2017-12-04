@@ -27,6 +27,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
+import org.sonatype.plexus.build.incremental.BuildContext;
 
 /**
  * Simplify maven project descriptor for publication.
@@ -55,6 +56,11 @@ public class FlattenMojo extends AbstractMojo {
 	@Component()
 	BuildPluginManager manager;
 
+	/**
+	 * Eclipse integration context.
+	 */
+	@Component()
+	BuildContext buildContext;
 	/**
 	 * Flag to skip this goal execution.
 	 */
@@ -136,7 +142,15 @@ public class FlattenMojo extends AbstractMojo {
 	boolean performRemoveMembers;
 
 	/**
-	 * Execution step 4. Replace project pom.xml with generated flattened pom.xml
+	 * Execution step 4. Override project maven identity with:
+	 * {@link #overrideGroupId} {@link #overrideArtifactId}
+	 * {@link #overrideVersion}.
+	 */
+	@Parameter(property = "flatten.performOverrideIdentity", defaultValue = "false")
+	boolean performOverrideIdentity;
+
+	/**
+	 * Execution step 5. Replace project pom.xml with generated flattened pom.xml
 	 * for publication. Actual switch depends on condition
 	 * {@link #packagingSwitchList}.
 	 */
@@ -149,6 +163,24 @@ public class FlattenMojo extends AbstractMojo {
 	 */
 	@Parameter(property = "flatten.encoding", defaultValue = "UTF-8")
 	String encoding;
+
+	/**
+	 * Override project group id via {@link #performOverrideIdentity}.
+	 */
+	@Parameter(property = "flatten.overrideGroupId", defaultValue = "${project.groupId}")
+	String overrideGroupId;
+
+	/**
+	 * Override project artifact id via {@link #performOverrideIdentity}.
+	 */
+	@Parameter(property = "flatten.overrideArtifactId", defaultValue = "${project.artifactId}")
+	String overrideArtifactId;
+
+	/**
+	 * Override project version via {@link #performOverrideIdentity}.
+	 */
+	@Parameter(property = "flatten.overrideVersion", defaultValue = "${project.version}")
+	String overrideVersion;
 
 	/**
 	 * Use model char set with fall back to {@link #encoding}
@@ -308,7 +340,7 @@ public class FlattenMojo extends AbstractMojo {
 	}
 
 	/**
-	 * Remove model members configured in {@link #memberRemoveList}.
+	 * Remove artifacts in scopes configured via {@link #scopeEraseList}.
 	 */
 	void eraseScopes(Model model) throws Exception {
 		for (String scope : scopeEraseList) {
@@ -333,12 +365,22 @@ public class FlattenMojo extends AbstractMojo {
 		Charset charset = modelCharset(model);
 		ensureParent(file);
 		writePom(model, file, charset);
+		buildContext.refresh(file);
+	}
+
+	/**
+	 * Replace project maven identity values.
+	 */
+	void overrideIdentity(Model model) {
+		model.setGroupId(overrideGroupId);
+		model.setArtifactId(overrideArtifactId);
+		model.setVersion(overrideVersion);
 	}
 
 	/**
 	 * Replace attached project pom.xml with generated target pom.xml.
 	 */
-	void switchModel() throws Exception {
+	void switchProjectPomXml() throws Exception {
 		File file = targetPomFile;
 		project.setPomFile(file);
 	}
@@ -348,11 +390,17 @@ public class FlattenMojo extends AbstractMojo {
 	 */
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
-		if (skip) {
-			getLog().info("Skipping plugin execution.");
+		if (buildContext.isIncremental()) {
+			getLog().info("Skipping incremental execution.");
 			return;
 		}
+		if (skip) {
+			getLog().info("Skipping plugin goal execution.");
+			return;
+		}
+		File sourcePomFile = project.getModel().getPomFile();
 		try {
+			buildContext.removeMessages(sourcePomFile);
 
 			final Model model = project.getModel().clone();
 
@@ -370,6 +418,10 @@ public class FlattenMojo extends AbstractMojo {
 				getLog().info("Removing pom.xml model members.");
 				removeMembers(model);
 			}
+			if (performOverrideIdentity) {
+				getLog().info("Overriding project identity.");
+				overrideIdentity(model);
+			}
 
 			// Persist pom.xml
 
@@ -378,12 +430,14 @@ public class FlattenMojo extends AbstractMojo {
 			// Replace pom.xml
 
 			if (performSwitchPomXml && hasPackagingSwitch()) {
-				getLog().info("Switching project to flattend pom.xml.");
-				switchModel();
+				getLog().info("Switching project to flattened pom.xml.");
+				switchProjectPomXml();
 			}
 
 		} catch (Throwable e) {
-			throw new MojoFailureException("Flatten error", e);
+			String message = "Flatten error";
+			buildContext.addMessage(sourcePomFile, 1, 1, message, BuildContext.SEVERITY_ERROR, e);
+			throw new MojoFailureException(message, e);
 		}
 	}
 
