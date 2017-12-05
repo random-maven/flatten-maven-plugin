@@ -76,7 +76,7 @@ mvn clean package -P flatten
 
                         </configuration>
                         <executions>
-                            <!-- Activate "flatten:flatten" during "package" -->
+                            <!-- Activate "flatten:flatten" during "prepare-package" -->
                             <execution>
                                 <goals>
                                     <goal>flatten</goal>

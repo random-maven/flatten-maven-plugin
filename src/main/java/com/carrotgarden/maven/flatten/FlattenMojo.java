@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
@@ -33,7 +34,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
  * Simplify maven project descriptor for publication.
  */
 @Mojo(name = "flatten", //
-		defaultPhase = LifecyclePhase.PACKAGE, //
+		defaultPhase = LifecyclePhase.PREPARE_PACKAGE, //
 		requiresDependencyResolution = ResolutionScope.TEST, //
 		requiresProject = true)
 public class FlattenMojo extends AbstractMojo {
@@ -369,12 +370,21 @@ public class FlattenMojo extends AbstractMojo {
 	}
 
 	/**
-	 * Replace project maven identity values.
+	 * Replace model (pom.xml) identity values.
 	 */
 	void overrideIdentity(Model model) {
 		model.setGroupId(overrideGroupId);
 		model.setArtifactId(overrideArtifactId);
 		model.setVersion(overrideVersion);
+	}
+
+	/**
+	 * Replace artifact (finalName.jar) identity values.
+	 */
+	void overrideIdentity(Artifact artifact) {
+		artifact.setGroupId(overrideGroupId);
+		artifact.setArtifactId(overrideArtifactId);
+		artifact.setVersion(overrideVersion);
 	}
 
 	/**
@@ -403,7 +413,7 @@ public class FlattenMojo extends AbstractMojo {
 			buildContext.removeMessages(sourcePomFile);
 
 			// after clone():
-			// do not interpolate anything any more 
+			// do not interpolate anything any more
 			// only remove content or add static content
 			final Model model = project.getModel().clone();
 
@@ -423,20 +433,21 @@ public class FlattenMojo extends AbstractMojo {
 			}
 			if (performOverrideIdentity) {
 				getLog().info("Overriding project identity.");
+				// change model clone, affects pom.xml.flatten
 				overrideIdentity(model);
+				// change active project, affects following phases
+				overrideIdentity(project.getModel());
+				overrideIdentity(project.getArtifact());
 			}
 
-			// Persist pom.xml
-
+			// Persist pom.xml.flatten
 			persistModel(model);
 
-			// Replace pom.xml
-
+			// Switch pom.xml -> pom.xml.flatten
 			if (performSwitchPomXml && hasPackagingSwitch()) {
 				getLog().info("Switching project to flattened pom.xml.");
 				switchProjectPomXml();
 			}
-
 		} catch (Throwable e) {
 			String message = "Flatten error";
 			buildContext.addMessage(sourcePomFile, 1, 1, message, BuildContext.SEVERITY_ERROR, e);
