@@ -1,22 +1,16 @@
 language: java
-
 dist: trusty
-
 jdk:
 - oraclejdk8
-
 cache:
   directories:
   - "$HOME/.m2"
-  
 env: 
-  global:
+  global: 
   - secure: ZY0t2z8EzYTXyjPRmgj5mmuLtUXpFQpvfrDeZk0eOjQL3h/Rl16OT51xHig4RjcBepPazDdmuCxoTjgYGS4lIVJ8d7K0p9KkyiOei+j9b7jVFTmklU3f+2I+jgtHCNkuN3EIYAhRWLuOSICdFT1iJfGWP0kuJIXnz+bHBFIiK/iNJ8Xiy8q0hgDTBW7IOauFr4qfk22wHE38smrNsUVSkaYUZ7NTYNwA/2aC5equTjB8acntAqH301mT0Jp1usfl0IjHIYr/JCW+zI3HRVE1g8fq6QyyZC37i0+k+HQCqlNkzOHk9IopNZBNuuk+J+FzVTcqtlLtKP3fk2dNZ7Nk9MXHGNZGHZtvZuk52FxlfHWOKd/5Xtz9iB8k3LGZfDIkx84NjV2urrlG55xoAaZg9xkxdlZiyVdFa5oj2Dnill25E4kpZdnFE+bV7HdpfbbpXz7mLn5gPhi8JqRkjVr6NUoHmXTcP2hoL1yJrIsrqmGBl+nnlL4evU0ysuRC8YPWoUXCA38GYeuj8662dvp2efjxszMC70naoQpqZ1QOllP49fDUXNYUuqFoi+WGiX5XVwRlnGwkrwNvHiEZV8m7T0GL8TPCmXkRCadkJ9O8dVG5a4qUXPCrwWtpI0zm0qoa4wV7hwI/uCYg8jBisgIcDMC1s37AZ9E/1EuoXxbPWwA=
   - secure: j6iUu7fLc+KS8qfns/pYq1Y5k8VU8p0WGACJimOHJwJ8krDMrdy990HPdC9NNsIEOlB+PhI17f+5eipGWqEJR9Arul3y2Sdy17s/6TrLa82tb0XxzzhH4Gnec/toL1m7BOK5exeTeD963AWeqvylxoQjrs1AE7M2IuMmf6emLS3cRU0P5JTqRGtog1QZ3j4W85iJvCR6EPidrGOlg7qwtbiZhBIxjv/L2JQXVeEUdxY3cnEgx3zgrSWbEuEdnxvGC8VSnaJ8NMgkW1nmjtM5ee/INcWTNf59FEV6yTzQFA9wUskYDK1LpUQeVnYtHhjerg16HpHIs9xp/Fzre0pjVS4cH0m3Ib6WPR8qmu7kGpsko31KJgcj0Xo6tMel3S2rWQ7Lht7ovUuMGQ79GOJhCf6PbtpeImZUFbYqJlEgpTBFWDxuJC5V4O2vGagZz2/EJBvuseZ8i8MUzBHL0njY2f3EiJeImrThyJ8NiMKv1H+etIzTWPSe1MCrHC0MFKxfm5BSpNz/DWBXX4RYh+AW5Dw0ZotfTCpFpk6RNLhR4fM1XdrHLw8REaQE2tfD6Q2nns+d01maLmxatWMZwR/2VvEbgEVQ/9KcWnVTs+dVw1Gv8igY0O5HcZiZOYQYDW/lOFBwwiJng47hNYNnhzNjhP6c+eC+vamRQx48qF3kAIg=
-  
 install: 
 - "/bin/true"
-  
 script:
 - "cp -f ./.mvn/ci/settings.xml $HOME/.m2/settings.xml"
 - "./.mvn/verify.sh"

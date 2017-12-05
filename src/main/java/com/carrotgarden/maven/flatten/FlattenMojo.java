@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.execution.MavenSession;
+import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
@@ -145,7 +146,6 @@ public class FlattenMojo extends AbstractMojo {
 	/**
 	 * Execution step 4. Override project maven identity with:
 	 * {@link #overrideGroupId} {@link #overrideArtifactId}
-	 * {@link #overrideVersion}.
 	 */
 	@Parameter(property = "flatten.performOverrideIdentity", defaultValue = "false")
 	boolean performOverrideIdentity;
@@ -176,12 +176,6 @@ public class FlattenMojo extends AbstractMojo {
 	 */
 	@Parameter(property = "flatten.overrideArtifactId", defaultValue = "${project.artifactId}")
 	String overrideArtifactId;
-
-	/**
-	 * Override project version via {@link #performOverrideIdentity}.
-	 */
-	@Parameter(property = "flatten.overrideVersion", defaultValue = "${project.version}")
-	String overrideVersion;
 
 	/**
 	 * Use model char set with fall back to {@link #encoding}
@@ -370,21 +364,28 @@ public class FlattenMojo extends AbstractMojo {
 	}
 
 	/**
-	 * Replace model (pom.xml) identity values.
+	 * Replace model identity values: inside pom.xml.
 	 */
 	void overrideIdentity(Model model) {
 		model.setGroupId(overrideGroupId);
 		model.setArtifactId(overrideArtifactId);
-		model.setVersion(overrideVersion);
 	}
 
 	/**
-	 * Replace artifact (finalName.jar) identity values.
+	 * Replace artifact identity values: for the repository/${...}.jar.
 	 */
 	void overrideIdentity(Artifact artifact) {
 		artifact.setGroupId(overrideGroupId);
 		artifact.setArtifactId(overrideArtifactId);
-		artifact.setVersion(overrideVersion);
+	}
+
+	/**
+	 * Replace project build identity values: for the ./target/${...}.jar.
+	 */
+	void overrideIdentity(Build build) {
+		// Use maven convention.
+		String finalName = overrideArtifactId + "-" + project.getVersion();
+		build.setFinalName(finalName);
 	}
 
 	/**
@@ -415,33 +416,35 @@ public class FlattenMojo extends AbstractMojo {
 			// after clone():
 			// do not interpolate anything any more
 			// only remove content or add static content
-			final Model model = project.getModel().clone();
+			final Model flatModel = project.getModel().clone();
 
-			// Change pom.xml
-
+			// Change pom.xml.flatten
 			if (performDependencyResolve) {
 				getLog().info("Resolving dependencies.");
-				resolveDependency(model);
+				resolveDependency(flatModel);
 			}
 			if (performEraseScopes) {
 				getLog().info("Erasing dependency scopes.");
-				eraseScopes(model);
+				eraseScopes(flatModel);
 			}
 			if (performRemoveMembers) {
 				getLog().info("Removing pom.xml model members.");
-				removeMembers(model);
+				removeMembers(flatModel);
 			}
+
+			// Change pom.xml.flatten and active project
 			if (performOverrideIdentity) {
 				getLog().info("Overriding project identity.");
 				// change model clone, affects pom.xml.flatten
-				overrideIdentity(model);
+				overrideIdentity(flatModel);
 				// change active project, affects following phases
 				overrideIdentity(project.getModel());
 				overrideIdentity(project.getArtifact());
+				overrideIdentity(project.getBuild());
 			}
 
 			// Persist pom.xml.flatten
-			persistModel(model);
+			persistModel(flatModel);
 
 			// Switch pom.xml -> pom.xml.flatten
 			if (performSwitchPomXml && hasPackagingSwitch()) {

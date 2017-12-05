@@ -3,18 +3,17 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.carrotgarden.a</groupId>
-        <artifactId>carrot-a</artifactId>
-        <version>0-SNAPSHOT</version>
-    </parent>
-
     <groupId>com.carrotgarden.maven</groupId>
     <artifactId>flatten-maven-plugin-test-1</artifactId>
     <version>${revision}</version>
     <packaging>jar</packaging>
 
     <url>http://test-1</url>
+
+    <properties>
+        <revision>0.0.0</revision>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
 
@@ -61,6 +60,13 @@
                         <member>reporting</member>
                     </memberRemoveList>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

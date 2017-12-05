@@ -6,7 +6,7 @@
 
 set -e -u
 
-point=f47c9111f830c749c8af951cf4cd0d90c3979179
+point=b1a06d8209449c2c6821e452a3e90bf2d0c78539
 
 git reset --soft $point
 

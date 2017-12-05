@@ -24,4 +24,9 @@ quiet = true
 #targetDir = .mvn
 
 # Separator-delimited download resource path list.
-#pathList = pom.xml; extensions.xml; 
+pathList = \
+    pom.xml ; \
+    extensions.xml ; \
+    ci/settings.xml ; \
+    wrapper/maven-wrapper.jar ; \
+    wrapper/maven-wrapper.properties ; \
