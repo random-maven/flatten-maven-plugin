@@ -1,7 +1,8 @@
 #!/bin/bash
+set -e -u
 
 #
-# produce documentaion site
+# produce documentation site
 #
 
 cd "${BASH_SOURCE%/*}/.."

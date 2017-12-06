@@ -13,5 +13,5 @@ install:
 - "/bin/true"
 script:
 - "cp -f ./.mvn/ci/settings.xml $HOME/.m2/settings.xml"
-- "./.mvn/verify.sh"
-- "./.mvn/release-bintray.sh"
+- "./.mvn/verify.sh || exit 1"
+- "./.mvn/release-bintray.sh || exit 1"

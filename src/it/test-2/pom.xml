@@ -6,22 +6,24 @@
     <groupId>com.carrotgarden.maven</groupId>
     <artifactId>flatten-maven-plugin-test-2</artifactId>
     <version>${revision}</version>
-    <packaging>jar</packaging>
 
     <url>http://test-2</url>
 
     <properties>
-    
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
+
         <!-- Resource identity sequence. -->
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 
         <!-- Streaming release version. -->
-        <release.epoch>0</release.epoch>
+        <release.epoch>1.2.3</release.epoch>
         <release.stamp>${maven.build.timestamp}</release.stamp>
         <revision>${release.epoch}.${release.stamp}</revision>
-        
+
+        <!-- Emulate scala artifact. -->
+        <vesion.scala.gen>2.12</vesion.scala.gen>
+
     </properties>
 
     <dependencies>
@@ -54,6 +56,8 @@
     <build>
         <plugins>
 
+            <!-- Note: phase=prepare-package -->
+
             <plugin>
                 <groupId>com.carrotgarden.maven</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
@@ -72,7 +76,7 @@
                     <includeScope>test</includeScope>
                     <excludeTransitive>false</excludeTransitive>
                     <performOverrideIdentity>true</performOverrideIdentity>
-                    <overrideArtifactId>${project.artifactId}_2.12</overrideArtifactId>
+                    <overrideArtifactId>${project.artifactId}_${vesion.scala.gen}</overrideArtifactId>
                 </configuration>
                 <executions>
                     <execution>
@@ -82,6 +86,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Note: phase=package -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,6 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <!-- Global remote parent pom.xml -->
+    <!-- https://github.com/random-maven/arkon -->
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.carrotgarden.a</groupId>
@@ -12,7 +15,7 @@
     <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
 
-    <organization><!--  -->
+    <organization><!-- -->
         <name>CarrotGarden</name>
         <url>http://www.carrotgarden.com/</url>
     </organization>
@@ -35,7 +38,7 @@
 
         <!-- Default versions. -->
         <version.java>1.8</version.java>
-        <version.maven>3.3.0</version.maven>
+        <version.maven>3.5.0</version.maven>
         <version.jackson>2.9.2</version.jackson>
         <version.slf4j>1.7.25</version.slf4j>
         <version.tycho>1.0.0</version.tycho>
@@ -46,7 +49,7 @@
         <version.protobuf>3.5.0</version.protobuf>
         <version.snappy>1.1.7</version.snappy>
         <version.lucene>7.1.0</version.lucene>
-        <version.amazon.sdk>1.11.241</version.amazon.sdk>
+        <version.amazon.sdk>1.11.243</version.amazon.sdk>
         <version.sigar>1.6.5.132</version.sigar>
         <version.aspectj>1.8.13</version.aspectj>
         <version.bouncy>1.58</version.bouncy>
@@ -182,12 +185,12 @@
             <dependency>
                 <groupId>com.github.pathikrit</groupId>
                 <artifactId>better-files_${version.scala.gen}</artifactId>
-                <version>3.3.1</version>
+                <version>3.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pathikrit</groupId>
                 <artifactId>better-files-akka_${version.scala.gen}</artifactId>
-                <version>3.3.1</version>
+                <version>3.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.beachape.filemanagement</groupId>
@@ -741,7 +744,7 @@
             <dependency>
                 <groupId>org.eclipse.jgit</groupId>
                 <artifactId>org.eclipse.jgit</artifactId>
-                <version>4.9.0.201710071750-r</version>
+                <version>4.9.1.201712030800-r</version>
             </dependency>
 
             <!-- Indexing and searching. -->
@@ -877,7 +880,7 @@
             <dependency>
                 <groupId>org.codehaus.janino</groupId>
                 <artifactId>janino</artifactId>
-                <version>3.0.7</version>
+                <version>3.0.8</version>
             </dependency>
 
             <!-- Groovy. -->
@@ -1298,6 +1301,11 @@
 
         <plugins>
 
+            <!-- <plugin> -->
+            <!-- <groupId>org.apache.maven.plugins</groupId> -->
+            <!-- <artifactId>maven-enforcer-plugin</artifactId> -->
+            <!-- </plugin> -->
+
             <!-- FIXME breaks s3:// -->
             <!-- http://takari.io/book/40-lifecycle.html. -->
             <!-- <plugin> -->
@@ -1319,7 +1327,7 @@
                 <plugin>
                     <groupId>com.carrotgarden.maven</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
-                    <version>1.0.20171129163300</version>
+                    <version>1.1.20171204015648</version>
                 </plugin>
 
                 <plugin>
@@ -1364,7 +1372,7 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.5</version>
                     <configuration>
-                        <rulesUri>https://raw.githubusercontent.com/random-maven/meta-info/master/maven-version-rules.xml</rulesUri>
+                        <rulesUri>https://raw.githubusercontent.com/random-maven/arkon/master/config/maven-version-rules.xml</rulesUri>
                     </configuration>
                 </plugin>
 
@@ -1453,9 +1461,6 @@
                         <invokerPropertiesFile>invoker.properties</invokerPropertiesFile>
                         <preBuildHookScript>setup</preBuildHookScript>
                         <postBuildHookScript>verify</postBuildHookScript>
-                        <pomIncludes>
-                            <include>a/pom.xml</include>
-                        </pomIncludes>
                         <goals>
                             <!-- goals for child maven invocation -->
                             <goal>clean</goal>
@@ -1469,6 +1474,7 @@
                                 <!-- goals for parent maven invocation -->
                                 <goal>install</goal>
                                 <goal>run</goal>
+                                <goal>verify</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -1716,11 +1722,9 @@
                                 <rules>
                                     <requireMavenVersion>
                                         <version>${version.maven}</version>
-                                        <message><![CDATA[you must have maven version >= ${version.maven}]]></message>
                                     </requireMavenVersion>
                                     <requireJavaVersion>
                                         <version>${version.java}</version>
-                                        <message><![CDATA[you must have java version >= ${version.java}]]></message>
                                     </requireJavaVersion>
                                 </rules>
                             </configuration>
@@ -1792,6 +1796,37 @@
 
     <profiles>
 
+        <!-- Disable any testing. -->
+        <profile>
+            <id>skip-test</id>
+            <activation>
+                <file>
+                    <exists>pom-skip-test.md</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Provide -D skipTests -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+                    <!-- Provide -D invoker.skip=true -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-invoker-plugin</artifactId>
+                        <configuration>
+                            <skipInstallation>true</skipInstallation>
+                            <skipInvocation>true</skipInvocation>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Produce simple deployment pom.xml -->
         <profile>
             <id>flatten</id>
@@ -1821,6 +1856,7 @@
                         </configuration>
                         <executions>
                             <execution>
+                                <phase>prepare-package</phase>
                                 <goals>
                                     <goal>flatten</goal>
                                 </goals>
@@ -1879,28 +1915,39 @@
             </build>
         </profile>
 
-        <!-- Bintray plugins. -->
+        <!-- Bintray random-scalor. -->
         <profile>
-            <id>repos-random-maven</id>
+            <id>repo-random-scalor</id>
             <activation>
                 <file>
-                    <exists>pom-repos-random-maven.md</exists>
+                    <exists>pom-repo-random-scalor.md</exists>
                 </file>
             </activation>
-            <properties>
-                <bintray.subject>random-maven</bintray.subject>
-                <bintray.repository>maven</bintray.repository>
-                <bintray.repo.url>https://dl.bintray.com/${bintray.subject}/${bintray.repository}</bintray.repo.url>
-            </properties>
+            <repositories>
+                <repository>
+                    <id>random-scalor</id>
+                    <url>https://dl.bintray.com/random-scalor/maven</url>
+                </repository>
+            </repositories>
+        </profile>
+
+        <!-- Bintray random-maven. -->
+        <profile>
+            <id>repo-random-maven</id>
+            <activation>
+                <file>
+                    <exists>pom-repo-random-maven.md</exists>
+                </file>
+            </activation>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>${bintray.subject}</id>
-                    <url>${bintray.repo.url}</url>
+                    <id>random-maven</id>
+                    <url>https://dl.bintray.com/random-maven/maven</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
 
-        <!-- Bintray deployment. -->
+        <!-- Bintray deploy. -->
         <profile>
             <id>distro-bintray</id>
             <activation>
@@ -1928,6 +1975,8 @@
                             <skip>false</skip>
                             <subject>${bintray.subject}</subject>
                             <repository>${bintray.repository}</repository>
+                            <restReadTimeout>30</restReadTimeout>
+                            <restWriteTimeout>30</restWriteTimeout>
                         </configuration>
                         <executions>
                             <execution>
@@ -1969,6 +2018,8 @@
                             <skip>false</skip>
                             <subject>${bintray.subject}</subject>
                             <repository>${bintray.repository}</repository>
+                            <restReadTimeout>30</restReadTimeout>
+                            <restWriteTimeout>30</restWriteTimeout>
                         </configuration>
                         <executions>
                             <execution>
@@ -1986,6 +2037,7 @@
         <profile>
             <id>m2e-lifecycle-mapping</id>
             <activation>
+                <!-- Eclipse detection. -->
                 <property>
                     <name>m2e.version</name>
                 </property>
@@ -3056,10 +3108,10 @@
         </profile>
 
         <profile>
-            <id>repos-typesafe-snapshots</id>
+            <id>repo-typesafe-snapshots</id>
             <activation>
                 <file>
-                    <exists>pom-repos-typesafe-snapshots.md</exists>
+                    <exists>pom-repo-typesafe-snapshots.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3092,10 +3144,10 @@
         </profile>
 
         <profile>
-            <id>repos-typesafe-releases</id>
+            <id>repo-typesafe-releases</id>
             <activation>
                 <file>
-                    <exists>pom-repos-typesafe-releases.md</exists>
+                    <exists>pom-repo-typesafe-releases.md</exists>
                 </file>
             </activation>
             <properties>
@@ -4191,44 +4243,10 @@
                 </file>
             </activation>
             <properties>
-                <scala.eclipse.project>${basedir}/.project</scala.eclipse.project>
-                <scala.eclipse.settings>${basedir}/.settings</scala.eclipse.settings>
-                <scala.eclipse.properties>${scala.eclipse.settings}/org.scala-ide.sdt.core.prefs</scala.eclipse.properties>
                 <scala.compiler.additionalParams><![CDATA[-Xsource:${version.scala.gen}]]></scala.compiler.additionalParams>
             </properties>
             <build>
                 <plugins>
-
-                    <!-- https://github.com/scala/scala/blob/2.12.x/src/compiler/scala/tools/nsc/settings/ScalaSettings.scala -->
-
-                    <!-- Configure Scala compiler in IDE. -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>eclipse-scala</id>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <mkdir dir="${scala.eclipse.settings}" />
-                                        <propertyfile file="${scala.eclipse.properties}" comment="Maven Config: scala"
-                                            jdkproperties="true">
-                                            <entry key="eclipse.preferences.version" value="1" />
-                                            <entry key="target" value="jvm-${version.java}" />
-                                            <entry key="scala.compiler.useProjectSettings" value="true" />
-                                            <entry key="scala.compiler.sourceLevel" value="${version.scala.gen}" />
-                                            <entry key="scala.compiler.installation" value="${version.scala.eclipse}" />
-                                            <entry key="scala.compiler.additionalParams" value="${scala.compiler.additionalParams}" />
-                                        </propertyfile>
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
 
                     <!-- <plugin> -->
                     <!-- <groupId>org.scalastyle</groupId> -->
@@ -4267,7 +4285,7 @@
                         <artifactId>build-helper-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>filter-params</id>
+                                <id>format-params</id>
                                 <phase>initialize</phase>
                                 <goals>
                                     <goal>regex-property</goal>
@@ -4325,7 +4343,60 @@
             </build>
         </profile>
 
-        <!-- Activate Scala/JS Library Project: produce sjsir. -->
+        <!-- Activate combined Java + Scala Project. -->
+        <profile>
+            <id>java-scala-eclipse</id>
+            <activation>
+                <!-- User activation. -->
+                <file>
+                    <exists>pom-java-scala.md</exists>
+                </file>
+                <!-- Eclipse detection. -->
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+            <properties>
+                <scala.eclipse.project>${project.basedir}/.project</scala.eclipse.project>
+                <scala.eclipse.settings>${project.basedir}/.settings</scala.eclipse.settings>
+                <scala.eclipse.properties>${scala.eclipse.settings}/org.scala-ide.sdt.core.prefs</scala.eclipse.properties>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- Configure Scala compiler in Ecipse. -->
+                    <!-- https://github.com/scala/scala/blob/2.12.x/src/compiler/scala/tools/nsc/settings/ScalaSettings.scala -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>eclipse-scala</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <mkdir dir="${scala.eclipse.settings}" />
+                                        <propertyfile file="${scala.eclipse.properties}" comment="Maven Config: Scala"
+                                            jdkproperties="true">
+                                            <entry key="eclipse.preferences.version" value="1" />
+                                            <entry key="target" value="jvm-${version.java}" />
+                                            <entry key="scala.compiler.useProjectSettings" value="true" />
+                                            <entry key="scala.compiler.sourceLevel" value="${version.scala.gen}" />
+                                            <entry key="scala.compiler.installation" value="${version.scala.eclipse}" />
+                                            <entry key="scala.compiler.additionalParams" value="${scala.compiler.additionalParams}" />
+                                        </propertyfile>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Activate Scala.js Library Project: produce sjsir classes. -->
         <profile>
             <id>scala-js-lib</id>
             <activation>
@@ -4334,69 +4405,14 @@
                 </file>
             </activation>
             <properties>
-                <!-- Scala/JS compiler plugin identification. -->
+                <!-- Scala.js compiler plugin identification. -->
                 <sjs.plugin.groupId>org.scala-js</sjs.plugin.groupId>
                 <sjs.plugin.artifactId>scalajs-compiler_${version.scala.rel}</sjs.plugin.artifactId>
                 <sjs.plugin.version>${version.sjs.rel}</sjs.plugin.version>
-                <!-- Scala/JS compiler plugin IDE integration. -->
-                <sjs.plugin.name>scalajs</sjs.plugin.name>
-                <sjs.plugin.directory>${project.build.directory}/scala-plugin</sjs.plugin.directory>
                 <scala.compiler.additionalParams><![CDATA[-Xsource:${version.scala.gen} -P:scalajs:sjsDefinedByDefault]]></scala.compiler.additionalParams>
             </properties>
             <build>
                 <plugins>
-
-                    <!-- Provision Scala/JS compiler plugin for the IDE. -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>plugin-copy</id>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>copy</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>${sjs.plugin.groupId}</groupId>
-                                            <artifactId>${sjs.plugin.artifactId}</artifactId>
-                                            <version>${sjs.plugin.version}</version>
-                                            <outputDirectory>${sjs.plugin.directory}</outputDirectory>
-                                            <overWrite>false</overWrite>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Configure Scala/JS compiler plugin in IDE. -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>eclipse-scala-js</id>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <propertyfile file="${scala.eclipse.properties}" comment="Maven Config: scala-js"
-                                            jdkproperties="true">
-                                            <entry key="Xpluginsdir" value="${sjs.plugin.directory}" />
-                                            <entry key="Xplugin" value="" />
-                                            <entry key="Xplugin-disable" value="" />
-                                            <entry key="Xplugin-require" value="${sjs.plugin.name}" />
-                                        </propertyfile>
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
 
                     <!-- Compile none of Java. -->
                     <plugin>
@@ -4427,7 +4443,81 @@
             </build>
         </profile>
 
-        <!-- Activate Scala/JS Runtime Project: produce run.js. -->
+        <!-- Activate Scala.js Library Project: produce sjsir classes. -->
+        <profile>
+            <id>scala-js-lib-eclipse</id>
+            <activation>
+                <!-- User activation. -->
+                <file>
+                    <exists>pom-scala-js-lib.md</exists>
+                </file>
+                <!-- Eclipse detection. -->
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+            <properties>
+                <!-- Scala.js compiler plugin Eclipse integration. -->
+                <sjs.plugin.name>scalajs</sjs.plugin.name>
+                <sjs.plugin.directory>${project.build.directory}/scala-plugin</sjs.plugin.directory>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- Provision Scala.js compiler plugin for Eclipse. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>plugin-scala-js</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>${sjs.plugin.groupId}</groupId>
+                                            <artifactId>${sjs.plugin.artifactId}</artifactId>
+                                            <version>${sjs.plugin.version}</version>
+                                            <outputDirectory>${sjs.plugin.directory}</outputDirectory>
+                                            <overWrite>false</overWrite>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Configure Scala.js compiler plugin in Eclipse. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>eclipse-scala-js</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <propertyfile file="${scala.eclipse.properties}" comment="Maven Config: Scala JS"
+                                            jdkproperties="true">
+                                            <entry key="Xpluginsdir" value="${sjs.plugin.directory}" />
+                                            <entry key="Xplugin" value="" />
+                                            <entry key="Xplugin-disable" value="" />
+                                            <entry key="Xplugin-require" value="${sjs.plugin.name}" />
+                                        </propertyfile>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Activate Scala.js Runtime Project: produce runtime.js. -->
         <profile>
             <id>scala-js-run</id>
             <activation>
@@ -4435,7 +4525,7 @@
                     <exists>pom-scala-js-run.md</exists>
                 </file>
             </activation>
-            <!-- Scala/JS libraries use scope=provided. -->
+            <!-- Scala.js sjsir libraries use scope=provided. -->
             <dependencies>
                 <dependency>
                     <groupId>org.scala-js</groupId>
@@ -4449,8 +4539,8 @@
                 <sjs.runtime>runtime.js</sjs.runtime><!-- Generated runtime script name. -->
                 <sjs.rundeps>runtime.deps</sjs.rundeps><!-- Dependency report artifact list. -->
                 <!-- -->
-                <sjs.scope>provided</sjs.scope><!-- Sacala/JS jar dependency selection filter -->
-                <sjs.phase>prepare-package</sjs.phase><!-- Linker invocation stage. -->
+                <sjs.scope>provided</sjs.scope><!-- Scala.js sjsir jar dependency selection filter -->
+                <sjs.phase>prepare-package</sjs.phase><!-- Linker invocation lifecycle stage. -->
                 <sjs.target>${project.build.directory}/scala-js/${sjs.basedir}</sjs.target><!-- JS linker output folder. -->
                 <!-- -->
                 <sjs.main.classes>${project.build.directory}/classes</sjs.main.classes>
@@ -4466,13 +4556,13 @@
             <build>
                 <plugins>
 
-                    <!-- Provide Scala/JS build folder. -->
+                    <!-- Provide Scala.js build folder. -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>make-dir</id>
+                                <id>make-build-dir</id>
                                 <phase>${sjs.phase}</phase>
                                 <goals>
                                     <goal>run</goal>
@@ -4491,8 +4581,9 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <executions>
+                            <!-- Inject as project property. -->
                             <execution>
-                                <id>build-path</id>
+                                <id>inject-classpath</id>
                                 <phase>${sjs.phase}</phase>
                                 <goals>
                                     <goal>build-classpath</goal>
@@ -4502,8 +4593,9 @@
                                     <outputProperty>sjs.dependency</outputProperty>
                                 </configuration>
                             </execution>
+                            <!-- Report to include in the jar. -->
                             <execution>
-                                <id>print-path</id>
+                                <id>output-classpath</id>
                                 <phase>${sjs.phase}</phase>
                                 <goals>
                                     <goal>list</goal>
@@ -4522,8 +4614,9 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>build-helper-maven-plugin</artifactId>
                         <executions>
+                            <!-- Convert to Scala.js linker format. -->
                             <execution>
-                                <id>filter-path</id>
+                                <id>format-classpath</id>
                                 <phase>${sjs.phase}</phase>
                                 <goals>
                                     <goal>regex-property</goal>
@@ -4531,7 +4624,7 @@
                                 <configuration>
                                     <name>sjs.dependency</name>
                                     <value>${sjs.dependency}</value>
-                                    <regex>${path.separator}</regex>
+                                    <regex>${path.separator}</regex><!-- windows=';' unix=':' -->
                                     <failIfNoMatch>false</failIfNoMatch>
                                     <replacement xml:space="preserve"><![CDATA[ ]]></replacement>
                                 </configuration>
@@ -4539,7 +4632,7 @@
                         </executions>
                     </plugin>
 
-                    <!-- Generate Scala/JS scripts. -->
+                    <!-- Generate Scala.js runtime script. -->
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
@@ -4559,7 +4652,7 @@
                         </dependencies>
                         <executions>
                             <execution>
-                                <id>make-js</id>
+                                <id>make-runtime</id>
                                 <phase>${sjs.phase}</phase>
                                 <goals>
                                     <goal>java</goal>
@@ -4575,13 +4668,13 @@
                         </executions>
                     </plugin>
 
-                    <!-- Inclue generated scripts in the jar. -->
+                    <!-- Include generated runtime script in the jar. -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-resources-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>copy-js</id>
+                                <id>copy-runtime</id>
                                 <phase>${sjs.phase}</phase>
                                 <goals>
                                     <goal>copy-resources</goal>
@@ -4644,7 +4737,7 @@
                 <meta.plugin.groupId>org.scalameta</meta.plugin.groupId>
                 <meta.plugin.artifactId>paradise_${version.scala.rel}</meta.plugin.artifactId>
                 <meta.plugin.version>${version.scala.plug.meta}</meta.plugin.version>
-                <!-- Scala/Meta compiler plugin IDE integration. -->
+                <!-- Scala/Meta compiler plugin Eclipse integration. -->
                 <meta.plugin.name>macroparadise</meta.plugin.name>
                 <meta.plugin.directory>${project.build.directory}/scala-plugin</meta.plugin.directory>
                 <meta.eclipse.project>${basedir}/.project</meta.eclipse.project>
@@ -4653,7 +4746,7 @@
             </properties>
             <build>
                 <plugins>
-                    <!-- Provision Scala/Meta compiler plugin for IDE. -->
+                    <!-- Provision Scala/Meta compiler plugin for Eclipse. -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
@@ -4679,7 +4772,7 @@
                         </executions>
                     </plugin>
 
-                    <!-- Configure Scala/Meta compiler plugin in IDE. -->
+                    <!-- Configure Scala/Meta compiler plugin in Eclipse. -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>
@@ -4692,7 +4785,7 @@
                                 </goals>
                                 <configuration>
                                     <target>
-                                        <propertyfile file="${meta.eclipse.properties}" comment="Maven Config: scala-meta">
+                                        <propertyfile file="${meta.eclipse.properties}" comment="Maven Config: Scala Meta">
                                             <entry key="eclipse.preferences.version" value="1" />
                                             <entry key="scala.compiler.useProjectSettings" value="true" />
                                             <entry key="Xpluginsdir" value="${meta.plugin.directory}" />
@@ -4960,10 +5053,10 @@
 
         <!-- Public CarrotGarden snapshots. -->
         <profile>
-            <id>repos-sonatype-snapshots</id>
+            <id>repo-sonatype-snapshots</id>
             <activation>
                 <file>
-                    <exists>pom-repos-sonatype-snapshots.md</exists>
+                    <exists>pom-repo-sonatype-snapshots.md</exists>
                 </file>
             </activation>
             <repositories>
@@ -4996,10 +5089,10 @@
 
         <!-- Public CarrotGarden releases (before promotion to central). -->
         <profile>
-            <id>repos-sonatype-releases</id>
+            <id>repo-sonatype-releases</id>
             <activation>
                 <file>
-                    <exists>pom-repos-sonatype-releases.md</exists>
+                    <exists>pom-repo-sonatype-releases.md</exists>
                 </file>
             </activation>
             <repositories>

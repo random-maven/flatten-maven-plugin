@@ -1,3 +1,6 @@
+#
+# arkon-maven-extension
+#
 
 # Reduce logging.
 quiet = true
@@ -6,7 +9,7 @@ quiet = true
 #offline = false
 
 # Ignore "Last-Modified" header, always download.
-#fresh = false
+fresh = true
 
 # Path list separator character, see below.
 #separator = ;
@@ -30,3 +33,10 @@ pathList = \
     ci/settings.xml ; \
     wrapper/maven-wrapper.jar ; \
     wrapper/maven-wrapper.properties ; \
+    install.sh ; \
+    package.sh ; \
+    verify.sh ; \
+    site.sh ; \
+    release-bintray.sh ; \
+    release-sonatype.sh ; \
+    github-squash.sh ; \

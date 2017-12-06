@@ -116,7 +116,7 @@
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">	 * Behavior of {@link #performDependencyResolve}: artifact scope descriptor to</em>
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">	 * include in the dependency resolution.</em>
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	@Parameter(property = <span class="jxr_string">"flatten.includeScope"</span>, defaultValue = <span class="jxr_string">"runtime"</span>)
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	@Parameter(property = <span class="jxr_string">"flatten.includeScope"</span>, defaultValue = <span class="jxr_string">"compile"</span>)
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 	String includeScope;
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 	<em class="jxr_javadoccomment">/**</em>
@@ -372,7 +372,7 @@
 <a class="jxr_linenumber" name="L364" href="#L364">364</a> 	}
 <a class="jxr_linenumber" name="L365" href="#L365">365</a> 
 <a class="jxr_linenumber" name="L366" href="#L366">366</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">	 * Replace model identity values: inside pom.xml.</em>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">	 * Replace model identity: inside pom.xml.</em>
 <a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L369" href="#L369">369</a> 	<strong class="jxr_keyword">void</strong> overrideIdentity(Model model) {
 <a class="jxr_linenumber" name="L370" href="#L370">370</a> 		model.setGroupId(overrideGroupId);
@@ -380,7 +380,7 @@
 <a class="jxr_linenumber" name="L372" href="#L372">372</a> 	}
 <a class="jxr_linenumber" name="L373" href="#L373">373</a> 
 <a class="jxr_linenumber" name="L374" href="#L374">374</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">	 * Replace artifact identity values: for the repository/${...}.jar.</em>
+<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">	 * Replace artifact identity: for the repository/${...}.jar.</em>
 <a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L377" href="#L377">377</a> 	<strong class="jxr_keyword">void</strong> overrideIdentity(Artifact artifact) {
 <a class="jxr_linenumber" name="L378" href="#L378">378</a> 		artifact.setGroupId(overrideGroupId);
@@ -388,7 +388,7 @@
 <a class="jxr_linenumber" name="L380" href="#L380">380</a> 	}
 <a class="jxr_linenumber" name="L381" href="#L381">381</a> 
 <a class="jxr_linenumber" name="L382" href="#L382">382</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">	 * Replace project build identity values: for the ./target/${...}.jar.</em>
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">	 * Replace project build identity: for the ./target/${...}.jar.</em>
 <a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L385" href="#L385">385</a> 	<strong class="jxr_keyword">void</strong> overrideIdentity(Build build) {
 <a class="jxr_linenumber" name="L386" href="#L386">386</a> 		<em class="jxr_comment">// Use maven convention.</em>
@@ -421,12 +421,12 @@
 <a class="jxr_linenumber" name="L413" href="#L413">413</a> 		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L414" href="#L414">414</a> 			buildContext.removeMessages(sourcePomFile);
 <a class="jxr_linenumber" name="L415" href="#L415">415</a> 
-<a class="jxr_linenumber" name="L416" href="#L416">416</a> 			<em class="jxr_comment">// after clone():</em>
-<a class="jxr_linenumber" name="L417" href="#L417">417</a> 			<em class="jxr_comment">// do not interpolate anything any more</em>
-<a class="jxr_linenumber" name="L418" href="#L418">418</a> 			<em class="jxr_comment">// only remove content or add static content</em>
+<a class="jxr_linenumber" name="L416" href="#L416">416</a> 			<em class="jxr_comment">// Note: after clone():</em>
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> 			<em class="jxr_comment">// - do not interpolate anything any more</em>
+<a class="jxr_linenumber" name="L418" href="#L418">418</a> 			<em class="jxr_comment">// - only remove content or add static content</em>
 <a class="jxr_linenumber" name="L419" href="#L419">419</a> 			<strong class="jxr_keyword">final</strong> Model flatModel = project.getModel().clone();
 <a class="jxr_linenumber" name="L420" href="#L420">420</a> 
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> 			<em class="jxr_comment">// Change pom.xml.flatten</em>
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> 			<em class="jxr_comment">// Change pom.xml.flatten.</em>
 <a class="jxr_linenumber" name="L422" href="#L422">422</a> 			<strong class="jxr_keyword">if</strong> (performDependencyResolve) {
 <a class="jxr_linenumber" name="L423" href="#L423">423</a> 				getLog().info(<span class="jxr_string">"Resolving dependencies."</span>);
 <a class="jxr_linenumber" name="L424" href="#L424">424</a> 				resolveDependency(flatModel);
@@ -440,21 +440,21 @@
 <a class="jxr_linenumber" name="L432" href="#L432">432</a> 				removeMembers(flatModel);
 <a class="jxr_linenumber" name="L433" href="#L433">433</a> 			}
 <a class="jxr_linenumber" name="L434" href="#L434">434</a> 
-<a class="jxr_linenumber" name="L435" href="#L435">435</a> 			<em class="jxr_comment">// Change pom.xml.flatten and active project</em>
+<a class="jxr_linenumber" name="L435" href="#L435">435</a> 			<em class="jxr_comment">// Change pom.xml.flatten and active project.</em>
 <a class="jxr_linenumber" name="L436" href="#L436">436</a> 			<strong class="jxr_keyword">if</strong> (performOverrideIdentity) {
-<a class="jxr_linenumber" name="L437" href="#L437">437</a> 				getLog().info(<span class="jxr_string">"Overriding project identity."</span>);
-<a class="jxr_linenumber" name="L438" href="#L438">438</a> 				<em class="jxr_comment">// change model clone, affects pom.xml.flatten</em>
+<a class="jxr_linenumber" name="L437" href="#L437">437</a> 				getLog().info(<span class="jxr_string">"Overriding project maven identity."</span>);
+<a class="jxr_linenumber" name="L438" href="#L438">438</a> 				<em class="jxr_comment">// Change model clone, affects pom.xml.flatten.</em>
 <a class="jxr_linenumber" name="L439" href="#L439">439</a> 				overrideIdentity(flatModel);
-<a class="jxr_linenumber" name="L440" href="#L440">440</a> 				<em class="jxr_comment">// change active project, affects following phases</em>
+<a class="jxr_linenumber" name="L440" href="#L440">440</a> 				<em class="jxr_comment">// Change active project, affects following phases.</em>
 <a class="jxr_linenumber" name="L441" href="#L441">441</a> 				overrideIdentity(project.getModel());
 <a class="jxr_linenumber" name="L442" href="#L442">442</a> 				overrideIdentity(project.getArtifact());
 <a class="jxr_linenumber" name="L443" href="#L443">443</a> 				overrideIdentity(project.getBuild());
 <a class="jxr_linenumber" name="L444" href="#L444">444</a> 			}
 <a class="jxr_linenumber" name="L445" href="#L445">445</a> 
-<a class="jxr_linenumber" name="L446" href="#L446">446</a> 			<em class="jxr_comment">// Persist pom.xml.flatten</em>
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> 			<em class="jxr_comment">// Persist pom.xml.flatten.</em>
 <a class="jxr_linenumber" name="L447" href="#L447">447</a> 			persistModel(flatModel);
 <a class="jxr_linenumber" name="L448" href="#L448">448</a> 
-<a class="jxr_linenumber" name="L449" href="#L449">449</a> 			<em class="jxr_comment">// Switch pom.xml -&gt; pom.xml.flatten</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> 			<em class="jxr_comment">// Switch pom.xml -&gt; pom.xml.flatten.</em>
 <a class="jxr_linenumber" name="L450" href="#L450">450</a> 			<strong class="jxr_keyword">if</strong> (performSwitchPomXml &amp;&amp; hasPackagingSwitch()) {
 <a class="jxr_linenumber" name="L451" href="#L451">451</a> 				getLog().info(<span class="jxr_string">"Switching project to flattened pom.xml."</span>);
 <a class="jxr_linenumber" name="L452" href="#L452">452</a> 				switchProjectPomXml();

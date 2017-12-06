@@ -116,7 +116,7 @@
 <span class="sourceLineNo">108</span>         * Behavior of {@link #performDependencyResolve}: artifact scope descriptor to<a name="line.108"></a>
 <span class="sourceLineNo">109</span>         * include in the dependency resolution.<a name="line.109"></a>
 <span class="sourceLineNo">110</span>         */<a name="line.110"></a>
-<span class="sourceLineNo">111</span>        @Parameter(property = "flatten.includeScope", defaultValue = "runtime")<a name="line.111"></a>
+<span class="sourceLineNo">111</span>        @Parameter(property = "flatten.includeScope", defaultValue = "compile")<a name="line.111"></a>
 <span class="sourceLineNo">112</span>        String includeScope;<a name="line.112"></a>
 <span class="sourceLineNo">113</span><a name="line.113"></a>
 <span class="sourceLineNo">114</span>        /**<a name="line.114"></a>
@@ -372,7 +372,7 @@
 <span class="sourceLineNo">364</span>        }<a name="line.364"></a>
 <span class="sourceLineNo">365</span><a name="line.365"></a>
 <span class="sourceLineNo">366</span>        /**<a name="line.366"></a>
-<span class="sourceLineNo">367</span>         * Replace model identity values: inside pom.xml.<a name="line.367"></a>
+<span class="sourceLineNo">367</span>         * Replace model identity: inside pom.xml.<a name="line.367"></a>
 <span class="sourceLineNo">368</span>         */<a name="line.368"></a>
 <span class="sourceLineNo">369</span>        void overrideIdentity(Model model) {<a name="line.369"></a>
 <span class="sourceLineNo">370</span>                model.setGroupId(overrideGroupId);<a name="line.370"></a>
@@ -380,7 +380,7 @@
 <span class="sourceLineNo">372</span>        }<a name="line.372"></a>
 <span class="sourceLineNo">373</span><a name="line.373"></a>
 <span class="sourceLineNo">374</span>        /**<a name="line.374"></a>
-<span class="sourceLineNo">375</span>         * Replace artifact identity values: for the repository/${...}.jar.<a name="line.375"></a>
+<span class="sourceLineNo">375</span>         * Replace artifact identity: for the repository/${...}.jar.<a name="line.375"></a>
 <span class="sourceLineNo">376</span>         */<a name="line.376"></a>
 <span class="sourceLineNo">377</span>        void overrideIdentity(Artifact artifact) {<a name="line.377"></a>
 <span class="sourceLineNo">378</span>                artifact.setGroupId(overrideGroupId);<a name="line.378"></a>
@@ -388,7 +388,7 @@
 <span class="sourceLineNo">380</span>        }<a name="line.380"></a>
 <span class="sourceLineNo">381</span><a name="line.381"></a>
 <span class="sourceLineNo">382</span>        /**<a name="line.382"></a>
-<span class="sourceLineNo">383</span>         * Replace project build identity values: for the ./target/${...}.jar.<a name="line.383"></a>
+<span class="sourceLineNo">383</span>         * Replace project build identity: for the ./target/${...}.jar.<a name="line.383"></a>
 <span class="sourceLineNo">384</span>         */<a name="line.384"></a>
 <span class="sourceLineNo">385</span>        void overrideIdentity(Build build) {<a name="line.385"></a>
 <span class="sourceLineNo">386</span>                // Use maven convention.<a name="line.386"></a>
@@ -421,12 +421,12 @@
 <span class="sourceLineNo">413</span>                try {<a name="line.413"></a>
 <span class="sourceLineNo">414</span>                        buildContext.removeMessages(sourcePomFile);<a name="line.414"></a>
 <span class="sourceLineNo">415</span><a name="line.415"></a>
-<span class="sourceLineNo">416</span>                        // after clone():<a name="line.416"></a>
-<span class="sourceLineNo">417</span>                        // do not interpolate anything any more<a name="line.417"></a>
-<span class="sourceLineNo">418</span>                        // only remove content or add static content<a name="line.418"></a>
+<span class="sourceLineNo">416</span>                        // Note: after clone():<a name="line.416"></a>
+<span class="sourceLineNo">417</span>                        // - do not interpolate anything any more<a name="line.417"></a>
+<span class="sourceLineNo">418</span>                        // - only remove content or add static content<a name="line.418"></a>
 <span class="sourceLineNo">419</span>                        final Model flatModel = project.getModel().clone();<a name="line.419"></a>
 <span class="sourceLineNo">420</span><a name="line.420"></a>
-<span class="sourceLineNo">421</span>                        // Change pom.xml.flatten<a name="line.421"></a>
+<span class="sourceLineNo">421</span>                        // Change pom.xml.flatten.<a name="line.421"></a>
 <span class="sourceLineNo">422</span>                        if (performDependencyResolve) {<a name="line.422"></a>
 <span class="sourceLineNo">423</span>                                getLog().info("Resolving dependencies.");<a name="line.423"></a>
 <span class="sourceLineNo">424</span>                                resolveDependency(flatModel);<a name="line.424"></a>
@@ -440,21 +440,21 @@
 <span class="sourceLineNo">432</span>                                removeMembers(flatModel);<a name="line.432"></a>
 <span class="sourceLineNo">433</span>                        }<a name="line.433"></a>
 <span class="sourceLineNo">434</span><a name="line.434"></a>
-<span class="sourceLineNo">435</span>                        // Change pom.xml.flatten and active project<a name="line.435"></a>
+<span class="sourceLineNo">435</span>                        // Change pom.xml.flatten and active project.<a name="line.435"></a>
 <span class="sourceLineNo">436</span>                        if (performOverrideIdentity) {<a name="line.436"></a>
-<span class="sourceLineNo">437</span>                                getLog().info("Overriding project identity.");<a name="line.437"></a>
-<span class="sourceLineNo">438</span>                                // change model clone, affects pom.xml.flatten<a name="line.438"></a>
+<span class="sourceLineNo">437</span>                                getLog().info("Overriding project maven identity.");<a name="line.437"></a>
+<span class="sourceLineNo">438</span>                                // Change model clone, affects pom.xml.flatten.<a name="line.438"></a>
 <span class="sourceLineNo">439</span>                                overrideIdentity(flatModel);<a name="line.439"></a>
-<span class="sourceLineNo">440</span>                                // change active project, affects following phases<a name="line.440"></a>
+<span class="sourceLineNo">440</span>                                // Change active project, affects following phases.<a name="line.440"></a>
 <span class="sourceLineNo">441</span>                                overrideIdentity(project.getModel());<a name="line.441"></a>
 <span class="sourceLineNo">442</span>                                overrideIdentity(project.getArtifact());<a name="line.442"></a>
 <span class="sourceLineNo">443</span>                                overrideIdentity(project.getBuild());<a name="line.443"></a>
 <span class="sourceLineNo">444</span>                        }<a name="line.444"></a>
 <span class="sourceLineNo">445</span><a name="line.445"></a>
-<span class="sourceLineNo">446</span>                        // Persist pom.xml.flatten<a name="line.446"></a>
+<span class="sourceLineNo">446</span>                        // Persist pom.xml.flatten.<a name="line.446"></a>
 <span class="sourceLineNo">447</span>                        persistModel(flatModel);<a name="line.447"></a>
 <span class="sourceLineNo">448</span><a name="line.448"></a>
-<span class="sourceLineNo">449</span>                        // Switch pom.xml -&gt; pom.xml.flatten<a name="line.449"></a>
+<span class="sourceLineNo">449</span>                        // Switch pom.xml -&gt; pom.xml.flatten.<a name="line.449"></a>
 <span class="sourceLineNo">450</span>                        if (performSwitchPomXml &amp;&amp; hasPackagingSwitch()) {<a name="line.450"></a>
 <span class="sourceLineNo">451</span>                                getLog().info("Switching project to flattened pom.xml.");<a name="line.451"></a>
 <span class="sourceLineNo">452</span>                                switchProjectPomXml();<a name="line.452"></a>

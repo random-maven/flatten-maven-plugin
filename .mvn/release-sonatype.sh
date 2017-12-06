@@ -1,9 +1,10 @@
 #!/bin/bash
+set -e -u
 
 #
-# publish artifact
+# publish artifact via sonatype
 #
 
 cd "${BASH_SOURCE%/*}/.."
 
-./mvnw.sh clean deploy -B -D skipTests -D invoker.skip=true -P attach-sources,attach-javadoc,distro-sonatype,sign-artifacts
+./mvnw.sh clean deploy -B -P distro-sonatype,skip-test,attach-sources,attach-javadoc,sign-artifacts

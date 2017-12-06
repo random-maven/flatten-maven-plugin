@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e -u
 
 #
 # invoke integration test

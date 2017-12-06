@@ -108,7 +108,7 @@ public class FlattenMojo extends AbstractMojo {
 	 * Behavior of {@link #performDependencyResolve}: artifact scope descriptor to
 	 * include in the dependency resolution.
 	 */
-	@Parameter(property = "flatten.includeScope", defaultValue = "runtime")
+	@Parameter(property = "flatten.includeScope", defaultValue = "compile")
 	String includeScope;
 
 	/**
@@ -364,7 +364,7 @@ public class FlattenMojo extends AbstractMojo {
 	}
 
 	/**
-	 * Replace model identity values: inside pom.xml.
+	 * Replace model identity: inside pom.xml.
 	 */
 	void overrideIdentity(Model model) {
 		model.setGroupId(overrideGroupId);
@@ -372,7 +372,7 @@ public class FlattenMojo extends AbstractMojo {
 	}
 
 	/**
-	 * Replace artifact identity values: for the repository/${...}.jar.
+	 * Replace artifact identity: for the repository/${...}.jar.
 	 */
 	void overrideIdentity(Artifact artifact) {
 		artifact.setGroupId(overrideGroupId);
@@ -380,7 +380,7 @@ public class FlattenMojo extends AbstractMojo {
 	}
 
 	/**
-	 * Replace project build identity values: for the ./target/${...}.jar.
+	 * Replace project build identity: for the ./target/${...}.jar.
 	 */
 	void overrideIdentity(Build build) {
 		// Use maven convention.
@@ -413,12 +413,12 @@ public class FlattenMojo extends AbstractMojo {
 		try {
 			buildContext.removeMessages(sourcePomFile);
 
-			// after clone():
-			// do not interpolate anything any more
-			// only remove content or add static content
+			// Note: after clone():
+			// - do not interpolate anything any more
+			// - only remove content or add static content
 			final Model flatModel = project.getModel().clone();
 
-			// Change pom.xml.flatten
+			// Change pom.xml.flatten.
 			if (performDependencyResolve) {
 				getLog().info("Resolving dependencies.");
 				resolveDependency(flatModel);
@@ -432,21 +432,21 @@ public class FlattenMojo extends AbstractMojo {
 				removeMembers(flatModel);
 			}
 
-			// Change pom.xml.flatten and active project
+			// Change pom.xml.flatten and active project.
 			if (performOverrideIdentity) {
-				getLog().info("Overriding project identity.");
-				// change model clone, affects pom.xml.flatten
+				getLog().info("Overriding project maven identity.");
+				// Change model clone, affects pom.xml.flatten.
 				overrideIdentity(flatModel);
-				// change active project, affects following phases
+				// Change active project, affects following phases.
 				overrideIdentity(project.getModel());
 				overrideIdentity(project.getArtifact());
 				overrideIdentity(project.getBuild());
 			}
 
-			// Persist pom.xml.flatten
+			// Persist pom.xml.flatten.
 			persistModel(flatModel);
 
-			// Switch pom.xml -> pom.xml.flatten
+			// Switch pom.xml -> pom.xml.flatten.
 			if (performSwitchPomXml && hasPackagingSwitch()) {
 				getLog().info("Switching project to flattened pom.xml.");
 				switchProjectPomXml();

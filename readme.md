@@ -29,6 +29,10 @@ Compare results
 
 ### Usage examples
 
+Test projects
+* basic project [it/test-1](https://github.com/random-maven/flatten-maven-plugin/blob/master/src/it/test-1/pom.xml)
+* scala identity [it/test-2](https://github.com/random-maven/flatten-maven-plugin/blob/master/src/it/test-2/pom.xml)
+
 ####  `flatten:flatten` - produce deployment `pom.xml.flatten`
 
 ```

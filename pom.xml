@@ -100,10 +100,6 @@
                     <streamLogs>true</streamLogs>
                     <!-- Ensure CI cache of test repository. -->
                     <localRepositoryPath>${env.HOME}/.m2/repository-test/${project.artifactId}</localRepositoryPath>
-                    <goals>
-                        <goal>clean</goal>
-                        <goal>install</goal>
-                    </goals>
                 </configuration>
             </plugin>
 
@@ -119,7 +115,7 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>make-dir</id>
+                        <id>site</id>
                         <phase>site</phase>
                         <goals>
                             <goal>run</goal>
