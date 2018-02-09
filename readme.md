@@ -99,5 +99,5 @@ mvn clean package -P flatten
 cd /tmp
 git clone git@github.com:random-maven/flatten-maven-plugin.git
 cd flatten-maven-plugin
-./.mvn/install.sh
+./mvnw.sh clean install -B -P skip-test
 ```

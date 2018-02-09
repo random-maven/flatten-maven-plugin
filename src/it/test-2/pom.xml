@@ -9,6 +9,8 @@
 
     <url>http://test-2</url>
 
+    <description>Scala identity.</description>
+
     <properties>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,6 +25,9 @@
 
         <!-- Emulate scala artifact. -->
         <vesion.scala.gen>2.12</vesion.scala.gen>
+
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
 
     </properties>
 
@@ -55,6 +60,12 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+            </plugin>
 
             <!-- Note: phase=prepare-package -->
 

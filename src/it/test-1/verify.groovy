@@ -21,10 +21,10 @@ assert 2 == originalProject.dependencies.dependency.size()
  * flattened model is transformed
  */
 
-File flattendPom = new File( basedir, 'pom.xml.flatten' )
-assert flattendPom.exists()
+File flattenedPom = new File( basedir, 'target/flatten/pom.xml.flatten' )
+assert flattenedPom.exists()
 
-def flattendProject = new XmlSlurper().parse( flattendPom )
+def flattendProject = new XmlSlurper().parse( flattenedPom )
 
 assert '4.0.0' ==  flattendProject.modelVersion.text()
 assert 'com.carrotgarden.maven' == flattendProject.groupId.text()

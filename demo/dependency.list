@@ -1,0 +1,35 @@
+
+The following files have been resolved:
+   com.github.klieber:phantomjs-maven-plugin:jar:0.7:compile -- module phantomjs.maven.plugin (auto)
+   org.scala-lang.modules:scala-xml_2.12:jar:1.0.6:compile
+   org.sonatype.plexus:plexus-build-api:jar:0.0.7:compile -- module plexus.build.api (auto)
+   org.eclipse.m2e:org.eclipse.m2e.core:jar:1.8.1:provided -- module org.eclipse.m2e.core (auto)
+   com.carrotgarden.maven:maven-plugin-tools-annotations:jar:1.0.20171214023519:compile -- module maven.plugin.tools.annotations (auto)
+   org.eclipse.m2e:org.eclipse.m2e.core.ui:jar:1.8.1:provided -- module org.eclipse.m2e.core.ui (auto)
+   org.eclipse.m2e:org.eclipse.m2e.jdt:jar:1.8.1:provided -- module org.eclipse.m2e.jdt (auto)
+   org.apache.maven:maven-archiver:jar:3.2.0:compile -- module maven.archiver (auto)
+   org.eclipse.platform:org.eclipse.ui.workbench:jar:3.110.1:provided -- module org.eclipse.ui.workbench (auto)
+   com.github.eirslett:frontend-maven-plugin:jar:1.6:compile -- module frontend.maven.plugin (auto)
+   org.scala-js:scalajs-tools_2.12:jar:0.6.22:compile
+   org.scala-sbt:zinc_2.12:jar:1.1.1:compile
+   org.eclipse.m2e:org.eclipse.m2e.maven.runtime:jar:1.8.1:provided -- module org.eclipse.m2e.maven.runtime (auto)
+   org.apache.maven.reporting:maven-reporting-api:jar:3.0:compile -- module maven.reporting.api (auto)
+   org.webjars:webjars-locator-core:jar:0.35:compile -- module webjars.locator.core (auto)
+   org.apache.commons:commons-compress:jar:1.16:compile -- module org.apache.commons.compress [auto]
+   org.eclipse.jdt:org.eclipse.jdt.launching:jar:3.9.51:provided -- module org.eclipse.jdt.launching (auto)
+   org.osgi:org.osgi.core:jar:6.0.0:provided -- module org.osgi.core (auto)
+   org.apache.maven:maven-plugin-api:jar:3.5.2:compile -- module maven.plugin.api (auto)
+   org.apache.maven:maven-core:jar:3.5.2:compile -- module maven.core (auto)
+   org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.5.1:compile -- module maven.plugin.annotations (auto)
+   com.lihaoyi:upickle_2.12:jar:0.5.1:compile
+   com.carrotgarden.sjs:scala-js-junit-tools:jar:1.0.1.20180129202557:compile -- module scala.js.junit.tools (auto)
+   org.eclipse.jdt:org.eclipse.jdt.ui:jar:3.13.51:provided -- module org.eclipse.jdt.ui (auto)
+   org.scala-lang:scala-compiler:jar:2.12.4:compile -- module scala.compiler (auto)
+   org.eclipse.platform:org.eclipse.equinox.common:jar:3.9.0:provided -- module org.eclipse.equinox.common (auto)
+   org.eclipse.jdt:org.eclipse.jdt.core:jar:3.13.50:provided -- module org.eclipse.jdt.core (auto)
+   org.eclipse.platform:org.eclipse.jface:jar:3.13.2:provided -- module org.eclipse.jface (auto)
+   org.apache.maven:maven-compat:jar:3.5.2:compile -- module maven.compat (auto)
+   org.scala-sbt:compiler-bridge_2.12:jar:1.1.1:compile
+   org.twdata.maven:mojo-executor:jar:2.3.0:compile -- module mojo.executor (auto)
+   org.scala-ide:org.scala-ide.sdt.core:jar:4.7.1:provided -- module org.scala.ide.sdt.core (auto)
+

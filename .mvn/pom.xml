@@ -39,63 +39,70 @@
         <!-- Default versions. -->
         <version.java>1.8</version.java>
         <version.maven>3.5.0</version.maven>
-        <version.jackson>2.9.2</version.jackson>
+        <version.jackson>2.9.4</version.jackson>
         <version.slf4j>1.7.25</version.slf4j>
         <version.tycho>1.0.0</version.tycho>
         <version.groovy>2.4.13</version.groovy>
-        <version.jmh>1.19</version.jmh>
-        <version.sbe>1.7.5</version.sbe>
-        <version.agrona>0.9.11</version.agrona>
-        <version.protobuf>3.5.0</version.protobuf>
-        <version.snappy>1.1.7</version.snappy>
-        <version.lucene>7.1.0</version.lucene>
-        <version.amazon.sdk>1.11.243</version.amazon.sdk>
+        <version.jmh>1.20</version.jmh>
+        <version.sbe>1.7.6</version.sbe>
+        <version.agrona>0.9.12</version.agrona>
+        <version.protobuf>3.5.1</version.protobuf>
+        <version.snappy>1.1.7.1</version.snappy>
+        <version.lucene>7.2.1</version.lucene>
+        <version.amazon.sdk>1.11.273</version.amazon.sdk>
         <version.sigar>1.6.5.132</version.sigar>
         <version.aspectj>1.8.13</version.aspectj>
-        <version.bouncy>1.58</version.bouncy>
+        <version.bouncy>1.59</version.bouncy>
 
         <!-- Scala stack. -->
-        <version.scala.gen>2.12</version.scala.gen><!-- generation -->
-        <version.scala.rel>${version.scala.gen}.4</version.scala.rel><!-- release -->
-        <version.scala.eclipse>-2056646829</version.scala.eclipse><!-- scala-2.12.4 -->
+        <version.scala.epoch>2.12</version.scala.epoch>
+        <version.scala.release>2.12.4</version.scala.release>
         <version.scala.sbt>0.13.7</version.scala.sbt>
+        <version.scala.xml>1.0.6</version.scala.xml>
         <version.scala.protobuf>0.6.7</version.scala.protobuf>
-        <version.akka.main>2.5.7</version.akka.main>
+        <version.akka.main>2.5.9</version.akka.main>
         <version.akka.http>10.0.11</version.akka.http>
         <version.eventuate>0.8.1</version.eventuate>
-        <version.play>2.6.7</version.play>
+        <version.play>2.6.11</version.play>
         <version.scala.buff>1.4.0</version.scala.buff>
         <version.scala.mock>3.6.0</version.scala.mock>
         <version.specs2>4.0.2-291bdf5-20171123131811</version.specs2>
         <version.scalaz>7.3.0-M18</version.scalaz>
-        <version.kamon>0.6.7</version.kamon>
-        <version.scalatest>3.0.4</version.scalatest>
+        <version.kamon>1.0.1</version.kamon>
+        <version.scalatest>3.0.5</version.scalatest>
         <version.scalacheck>1.13.5</version.scalacheck>
-        <version.scala.plug.meta>3.0.0-M10</version.scala.plug.meta>
-        <version.scala.plug.macro>3.0.0-M4</version.scala.plug.macro>
+        <version.scala.meta>3.2.0</version.scala.meta>
+        <version.scala.plugin.meta>3.0.0-M11</version.scala.plugin.meta>
+        <version.scala.plugin.macro>2.1.1</version.scala.plugin.macro>
+        <version.scala.zinc>1.1.1</version.scala.zinc>
 
-        <!-- Scala JS stack. -->
-        <version.sjs.gen>0.6</version.sjs.gen><!-- sjs generation -->
-        <version.sjs.rel>${version.sjs.gen}.21</version.sjs.rel><!-- sjs release -->
-        <version.sjs.sca>${version.scala.gen}</version.sjs.sca><!-- sjs scala generation -->
-        <version.sjs.lib>sjs${version.sjs.gen}_${version.sjs.sca}</version.sjs.lib>
-        <version.sjs.scalacss>0.5.4</version.sjs.scalacss>
+        <!-- Scala.js stack. -->
+        <version.sjs.epoch>0.6</version.sjs.epoch>
+        <version.sjs.release>0.6.22</version.sjs.release>
+        <version.sjs.library>sjs${version.sjs.epoch}_${version.scala.epoch}</version.sjs.library>
+        <version.sjs.scalacss>0.5.5</version.sjs.scalacss>
         <version.sjs.scalatags>0.6.7</version.sjs.scalatags>
         <version.sjs.autowire>0.2.6</version.sjs.autowire>
         <version.sjs.prickle>1.1.14</version.sjs.prickle>
-        <version.sjs.upickle>0.4.4</version.sjs.upickle>
+        <version.sjs.upickle>0.5.1</version.sjs.upickle>
         <version.sjs.scalarx>0.3.2</version.sjs.scalarx>
-        <version.sjs.utest>0.6.0</version.sjs.utest>
+        <version.sjs.utest>0.6.3</version.sjs.utest>
+
+        <!-- JUnit Testing -->
+        <version.junit.legacy>4.12</version.junit.legacy>
+        <version.junit.platform>1.0.3</version.junit.platform>
+        <version.junit.jupiter>5.0.3</version.junit.jupiter>
+        <version.junit.vintage>4.12.3</version.junit.vintage>
 
         <!-- Maven plugins. -->
         <version.maven.scm>1.9.5</version.maven.scm>
-        <version.maven.testing>2.20.1</version.maven.testing>
-        <version.maven.javadoc>3.0.0-M1</version.maven.javadoc>
+        <version.maven.testing>2.19.1</version.maven.testing><!-- JUnit5 -->
+        <version.maven.javadoc>3.0.0</version.maven.javadoc>
 
         <!-- Database providers. -->
         <version.slick>3.2.1</version.slick>
-        <version.hikari>2.7.4</version.hikari>
-        <version.postgres>42.1.4</version.postgres>
+        <version.hikari>2.7.7</version.hikari>
+        <version.postgres>42.2.1</version.postgres>
 
         <!-- Carrot Garden internal repository. -->
         <repo.amazon.public.host>public.maven.carrotgarden.com</repo.amazon.public.host>
@@ -133,175 +140,187 @@
             <dependency>
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-library</artifactId>
-                <version>${version.scala.rel}</version>
+                <version>${version.scala.release}</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-reflect</artifactId>
-                <version>${version.scala.rel}</version>
+                <version>${version.scala.release}</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-compiler</artifactId>
-                <version>${version.scala.rel}</version>
+                <version>${version.scala.release}</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang.modules</groupId>
-                <artifactId>scala-swing_${version.scala.gen}</artifactId>
+                <artifactId>scala-swing_${version.scala.epoch}</artifactId>
                 <version>2.0.1</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang.modules</groupId>
-                <artifactId>scala-parser-combinators_${version.scala.gen}</artifactId>
-                <version>1.0.6</version>
+                <artifactId>scala-parser-combinators_${version.scala.epoch}</artifactId>
+                <version>1.1.0</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang.modules</groupId>
-                <artifactId>scala-xml_${version.scala.gen}</artifactId>
-                <version>1.0.6</version>
+                <artifactId>scala-xml_${version.scala.epoch}</artifactId>
+                <version>${version.scala.xml}</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang.modules</groupId>
-                <artifactId>scala-async_${version.scala.gen}</artifactId>
+                <artifactId>scala-async_${version.scala.epoch}</artifactId>
                 <version>0.9.7</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang.modules</groupId>
-                <artifactId>scala-pickling_${version.scala.gen}</artifactId>
+                <artifactId>scala-pickling_${version.scala.epoch}</artifactId>
                 <version>0.11.0-M2</version>
             </dependency>
 
             <!-- Scala utils. -->
             <dependency>
                 <groupId>com.jsuereth</groupId>
-                <artifactId>scala-arm_${version.scala.gen}</artifactId>
+                <artifactId>scala-arm_${version.scala.epoch}</artifactId>
                 <version>2.0</version>
             </dependency>
             <dependency>
                 <groupId>org.scalautils</groupId>
-                <artifactId>scalautils_${version.scala.gen}</artifactId>
+                <artifactId>scalautils_${version.scala.epoch}</artifactId>
                 <version>2.1.7</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pathikrit</groupId>
-                <artifactId>better-files_${version.scala.gen}</artifactId>
+                <artifactId>better-files_${version.scala.epoch}</artifactId>
                 <version>3.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pathikrit</groupId>
-                <artifactId>better-files-akka_${version.scala.gen}</artifactId>
+                <artifactId>better-files-akka_${version.scala.epoch}</artifactId>
                 <version>3.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.beachape.filemanagement</groupId>
-                <artifactId>schwatcher_${version.scala.gen}</artifactId>
+                <artifactId>schwatcher_${version.scala.epoch}</artifactId>
                 <version>0.3.5</version>
             </dependency>
             <dependency>
                 <groupId>com.roundeights</groupId>
-                <artifactId>hasher_${version.scala.gen}</artifactId>
+                <artifactId>hasher_${version.scala.epoch}</artifactId>
                 <version>1.2.0</version>
             </dependency>
 
             <!-- Scala compiler support. -->
             <dependency><!-- plugin -->
                 <groupId>org.scalameta</groupId>
-                <artifactId>paradise_${version.scala.rel}</artifactId>
-                <version>${version.scala.plug.meta}</version>
+                <artifactId>paradise_${version.scala.release}</artifactId>
+                <version>${version.scala.plugin.meta}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency><!-- plugin -->
                 <groupId>org.scalamacros</groupId>
-                <artifactId>paradise_${version.scala.rel}</artifactId>
-                <version>${version.scala.plug.macro}</version>
+                <artifactId>paradise_${version.scala.release}</artifactId>
+                <version>${version.scala.plugin.macro}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency><!-- runtime -->
                 <groupId>org.scalameta</groupId>
-                <artifactId>scalameta_${version.scala.gen}</artifactId>
-                <version>2.1.3</version>
+                <artifactId>scalameta_${version.scala.epoch}</artifactId>
+                <version>${version.scala.meta}</version>
                 <scope>provided</scope>
             </dependency>
-            <dependency>
+            <dependency><!-- runtime -->
                 <groupId>org.scalameta</groupId>
-                <artifactId>contrib_${version.scala.gen}</artifactId>
-                <version>2.1.3</version>
+                <artifactId>contrib_${version.scala.epoch}</artifactId>
+                <version>${version.scala.meta}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency><!-- runtime -->
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>acyclic_${version.scala.gen}</artifactId>
+                <artifactId>acyclic_${version.scala.epoch}</artifactId>
                 <version>0.1.7</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency><!-- runtime -->
+                <groupId>org.scala-sbt</groupId>
+                <artifactId>zinc_${version.scala.epoch}</artifactId>
+                <version>${version.scala.zinc}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency><!-- runtime -->
+                <groupId>org.scala-sbt</groupId>
+                <artifactId>compiler-bridge_${version.scala.epoch}</artifactId>
+                <version>${version.scala.zinc}</version>
                 <scope>provided</scope>
             </dependency>
 
             <!-- Scala Logging. -->
             <dependency>
                 <groupId>com.typesafe.scala-logging</groupId>
-                <artifactId>scala-logging_${version.scala.gen}</artifactId>
+                <artifactId>scala-logging_${version.scala.epoch}</artifactId>
                 <version>3.7.2</version>
             </dependency>
 
             <!-- Scala testing. -->
             <dependency>
                 <groupId>org.scalatest</groupId>
-                <artifactId>scalatest_${version.scala.gen}</artifactId>
+                <artifactId>scalatest_${version.scala.epoch}</artifactId>
                 <version>${version.scalatest}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.scalatest</groupId>
-                <artifactId>scalatest_${version.sjs.lib}</artifactId>
+                <artifactId>scalatest_${version.sjs.library}</artifactId>
                 <version>${version.scalatest}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.scalacheck</groupId>
-                <artifactId>scalacheck_${version.scala.gen}</artifactId>
+                <artifactId>scalacheck_${version.scala.epoch}</artifactId>
                 <version>${version.scalacheck}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.scalacheck</groupId>
-                <artifactId>scalacheck_${version.sjs.lib}</artifactId>
+                <artifactId>scalacheck_${version.sjs.library}</artifactId>
                 <version>${version.scalacheck}</version>
                 <scope>test</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>org.scalamock</groupId>
-                <artifactId>scalamock-core_${version.scala.gen}</artifactId>
+                <artifactId>scalamock-core_${version.scala.epoch}</artifactId>
                 <version>${version.scala.mock}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.scalamock</groupId>
-                <artifactId>scalamock-scalatest-support_${version.scala.gen}</artifactId>
+                <artifactId>scalamock-scalatest-support_${version.scala.epoch}</artifactId>
                 <version>${version.scala.mock}</version>
                 <scope>test</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>org.specs2</groupId>
-                <artifactId>specs2-core_${version.scala.gen}</artifactId>
+                <artifactId>specs2-core_${version.scala.epoch}</artifactId>
                 <version>${version.specs2}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.specs2</groupId>
-                <artifactId>specs2-junit_${version.scala.gen}</artifactId>
+                <artifactId>specs2-junit_${version.scala.epoch}</artifactId>
                 <version>${version.specs2}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.specs2</groupId>
-                <artifactId>specs2-mock_${version.scala.gen}</artifactId>
+                <artifactId>specs2-mock_${version.scala.epoch}</artifactId>
                 <version>${version.specs2}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.specs2</groupId>
-                <artifactId>specs2-matcher-extra_${version.scala.gen}</artifactId>
+                <artifactId>specs2-matcher-extra_${version.scala.epoch}</artifactId>
                 <version>${version.specs2}</version>
                 <scope>test</scope>
             </dependency>
@@ -309,19 +328,19 @@
             <!-- Scala JS/Facade. Scala-to-JS only facade. -->
             <dependency>
                 <groupId>org.scala-js</groupId>
-                <artifactId>scalajs-library_${version.sjs.sca}</artifactId>
-                <version>${version.sjs.rel}</version>
+                <artifactId>scalajs-library_${version.scala.epoch}</artifactId>
+                <version>${version.sjs.release}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.scala-js</groupId>
-                <artifactId>scalajs-dom_${version.sjs.lib}</artifactId>
+                <artifactId>scalajs-dom_${version.sjs.library}</artifactId>
                 <version>0.9.4</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>be.doeraene</groupId>
-                <artifactId>scalajs-jquery_${version.sjs.lib}</artifactId>
+                <artifactId>scalajs-jquery_${version.sjs.library}</artifactId>
                 <version>0.9.2</version>
                 <scope>provided</scope>
             </dependency>
@@ -329,85 +348,85 @@
             <!-- Scala JS/Dual. Scala + JS library. -->
             <dependency>
                 <groupId>com.github.dwickern</groupId>
-                <artifactId>scala-nameof_${version.scala.gen}</artifactId>
+                <artifactId>scala-nameof_${version.scala.epoch}</artifactId>
                 <version>1.0.3</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.dwickern</groupId>
-                <artifactId>scala-nameof_${version.sjs.lib}</artifactId>
+                <artifactId>scala-nameof_${version.sjs.library}</artifactId>
                 <version>1.0.3</version>
                 <scope>provided</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>scalatags_${version.scala.gen}</artifactId>
+                <artifactId>scalatags_${version.scala.epoch}</artifactId>
                 <version>${version.sjs.scalatags}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>scalatags_${version.sjs.lib}</artifactId>
+                <artifactId>scalatags_${version.sjs.library}</artifactId>
                 <version>${version.sjs.scalatags}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>autowire_${version.scala.gen}</artifactId>
+                <artifactId>autowire_${version.scala.epoch}</artifactId>
                 <version>${version.sjs.autowire}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>autowire_${version.sjs.lib}</artifactId>
+                <artifactId>autowire_${version.sjs.library}</artifactId>
                 <version>${version.sjs.autowire}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>com.github.benhutchison</groupId>
-                <artifactId>prickle_${version.scala.gen}</artifactId>
+                <artifactId>prickle_${version.scala.epoch}</artifactId>
                 <version>${version.sjs.prickle}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.benhutchison</groupId>
-                <artifactId>prickle_${version.sjs.lib}</artifactId>
+                <artifactId>prickle_${version.sjs.library}</artifactId>
                 <version>${version.sjs.prickle}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>upickle_${version.scala.gen}</artifactId>
+                <artifactId>upickle_${version.scala.epoch}</artifactId>
                 <version>${version.sjs.upickle}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>upickle_${version.sjs.lib}</artifactId>
+                <artifactId>upickle_${version.sjs.library}</artifactId>
                 <version>${version.sjs.upickle}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>scalarx_${version.scala.gen}</artifactId>
+                <artifactId>scalarx_${version.scala.epoch}</artifactId>
                 <version>${version.sjs.scalarx}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>scalarx_${version.sjs.lib}</artifactId>
+                <artifactId>scalarx_${version.sjs.library}</artifactId>
                 <version>${version.sjs.scalarx}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- -->
             <dependency>
                 <groupId>com.github.japgolly.scalacss</groupId>
-                <artifactId>core_${version.scala.gen}</artifactId>
+                <artifactId>core_${version.scala.epoch}</artifactId>
                 <version>${version.sjs.scalacss}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.japgolly.scalacss</groupId>
-                <artifactId>core_${version.sjs.lib}</artifactId>
+                <artifactId>core_${version.sjs.library}</artifactId>
                 <version>${version.sjs.scalacss}</version>
                 <scope>provided</scope>
             </dependency>
@@ -423,7 +442,7 @@
             <dependency>
                 <groupId>org.webjars.bower</groupId>
                 <artifactId>jquery</artifactId>
-                <version>3.2.1</version>
+                <version>3.3.1</version>
             </dependency>
             <dependency>
                 <groupId>org.webjars.bower</groupId>
@@ -433,26 +452,26 @@
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
-                <version>4.0.0-beta.2</version>
+                <version>4.0.0</version>
             </dependency>
 
             <!-- Scala JS/Webjar React stack. Non-scala -->
             <dependency>
                 <groupId>org.webjars.bower</groupId>
                 <artifactId>react</artifactId>
-                <version>16.0.0</version>
+                <version>16.1.0</version>
             </dependency>
             <dependency>
                 <groupId>org.webjars.npm</groupId>
                 <artifactId>react-dom</artifactId>
-                <version>16.1.1</version>
+                <version>16.2.0</version>
             </dependency>
 
             <!-- Scala JS/Webjar Vue stack. Non-scala. -->
             <dependency>
                 <groupId>org.webjars.bower</groupId>
                 <artifactId>vue</artifactId>
-                <version>2.5.3</version>
+                <version>2.5.13</version>
             </dependency>
             <dependency>
                 <groupId>org.webjars.bower</groupId>
@@ -479,139 +498,139 @@
             <!-- Scala JS testing. -->
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>utest_${version.scala.gen}</artifactId>
+                <artifactId>utest_${version.scala.epoch}</artifactId>
                 <version>${version.sjs.utest}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>utest_${version.sjs.lib}</artifactId>
+                <artifactId>utest_${version.sjs.library}</artifactId>
                 <version>${version.sjs.utest}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.scala-js</groupId>
-                <artifactId>scalajs-junit-test-plugin_${version.scala.rel}</artifactId>
-                <version>${version.sjs.rel}</version>
+                <artifactId>scalajs-junit-test-plugin_${version.scala.release}</artifactId>
+                <version>${version.sjs.release}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.scala-js</groupId>
-                <artifactId>scalajs-junit-test-runtime_${version.scala.gen}</artifactId>
-                <version>${version.sjs.rel}</version>
+                <artifactId>scalajs-junit-test-runtime_${version.scala.epoch}</artifactId>
+                <version>${version.sjs.release}</version>
                 <scope>test</scope>
             </dependency>
 
             <!-- Akka. -->
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-actor_${version.scala.gen}</artifactId>
+                <artifactId>akka-actor_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-agent_${version.scala.gen}</artifactId>
+                <artifactId>akka-agent_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-cluster_${version.scala.gen}</artifactId>
+                <artifactId>akka-cluster_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-cluster-tools_${version.scala.gen}</artifactId>
+                <artifactId>akka-cluster-tools_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-contrib_${version.scala.gen}</artifactId>
+                <artifactId>akka-contrib_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-kernel_${version.scala.gen}</artifactId>
+                <artifactId>akka-kernel_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-multi-node-testkit_${version.scala.gen}</artifactId>
-                <version>${version.akka.main}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-persistence_${version.scala.gen}</artifactId>
-                <version>${version.akka.main}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-persistence-tck_${version.scala.gen}</artifactId>
+                <artifactId>akka-multi-node-testkit_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-remote_${version.scala.gen}</artifactId>
+                <artifactId>akka-persistence_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-slf4j_${version.scala.gen}</artifactId>
+                <artifactId>akka-persistence-tck_${version.scala.epoch}</artifactId>
+                <version>${version.akka.main}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.typesafe.akka</groupId>
+                <artifactId>akka-remote_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-testkit_${version.scala.gen}</artifactId>
+                <artifactId>akka-slf4j_${version.scala.epoch}</artifactId>
+                <version>${version.akka.main}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.typesafe.akka</groupId>
+                <artifactId>akka-testkit_${version.scala.epoch}</artifactId>
                 <scope>test</scope>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-typed-experimental_${version.scala.gen}</artifactId>
+                <artifactId>akka-typed-experimental_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.typesafe.akka</groupId>
-                        <artifactId>akka-testkit_${version.scala.gen}</artifactId>
+                        <artifactId>akka-testkit_${version.scala.epoch}</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-stream_${version.scala.gen}</artifactId>
+                <artifactId>akka-stream_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-stream-testkit_${version.scala.gen}</artifactId>
+                <artifactId>akka-stream-testkit_${version.scala.epoch}</artifactId>
                 <version>${version.akka.main}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-http_${version.scala.gen}</artifactId>
+                <artifactId>akka-http_${version.scala.epoch}</artifactId>
                 <version>${version.akka.http}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-http-testkit_${version.scala.gen}</artifactId>
+                <artifactId>akka-http-testkit_${version.scala.epoch}</artifactId>
                 <version>${version.akka.http}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-http-spray-json_${version.scala.gen}</artifactId>
+                <artifactId>akka-http-spray-json_${version.scala.epoch}</artifactId>
                 <version>${version.akka.http}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-http-jackson_${version.scala.gen}</artifactId>
+                <artifactId>akka-http-jackson_${version.scala.epoch}</artifactId>
                 <version>${version.akka.http}</version>
             </dependency>
             <dependency>
                 <groupId>de.heikoseeberger</groupId>
-                <artifactId>akka-sse_${version.scala.gen}</artifactId>
+                <artifactId>akka-sse_${version.scala.epoch}</artifactId>
                 <version>3.0.0</version>
             </dependency>
 
@@ -623,7 +642,7 @@
             </dependency>
             <dependency>
                 <groupId>io.kamon</groupId>
-                <artifactId>kamon-core_${version.scala.gen}</artifactId>
+                <artifactId>kamon-core_${version.scala.epoch}</artifactId>
                 <version>${version.kamon}</version>
                 <exclusions>
                     <exclusion>
@@ -635,28 +654,28 @@
             <!-- -->
             <dependency>
                 <groupId>io.kamon</groupId>
-                <artifactId>kamon-jmx_${version.scala.gen}</artifactId>
+                <artifactId>kamon-jmx_${version.scala.epoch}</artifactId>
                 <version>${version.kamon}</version>
             </dependency>
             <!-- <dependency> -->
             <!-- <groupId>io.kamon</groupId> -->
-            <!-- <artifactId>kamon-statsd_${version.scala.gen}</artifactId> -->
+            <!-- <artifactId>kamon-statsd_${version.scala.epoch}</artifactId> -->
             <!-- <version>${version.kamon}</version> -->
             <!-- </dependency> -->
             <!-- <dependency> -->
             <!-- <groupId>io.kamon</groupId> -->
-            <!-- <artifactId>kamon-datadog_${version.scala.gen}</artifactId> -->
+            <!-- <artifactId>kamon-datadog_${version.scala.epoch}</artifactId> -->
             <!-- <version>${version.kamon}</version> -->
             <!-- </dependency> -->
             <!-- <dependency> -->
             <!-- <groupId>io.kamon</groupId> -->
-            <!-- <artifactId>kamon-newrelic_${version.scala.gen}</artifactId> -->
+            <!-- <artifactId>kamon-newrelic_${version.scala.epoch}</artifactId> -->
             <!-- <version>${version.kamon}</version> -->
             <!-- </dependency> -->
             <!-- -->
             <dependency>
                 <groupId>io.kamon</groupId>
-                <artifactId>kamon-system-metrics_${version.scala.gen}</artifactId>
+                <artifactId>kamon-system-metrics_${version.scala.epoch}</artifactId>
                 <version>${version.kamon}</version>
                 <exclusions>
                     <exclusion>
@@ -681,31 +700,31 @@
             <!-- Play. Disabled via "provided" -->
             <dependency>
                 <groupId>com.typesafe.play</groupId>
-                <artifactId>play_${version.scala.gen}</artifactId>
+                <artifactId>play_${version.scala.epoch}</artifactId>
                 <version>${version.play}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.play</groupId>
-                <artifactId>play-test_${version.scala.gen}</artifactId>
+                <artifactId>play-test_${version.scala.epoch}</artifactId>
                 <version>${version.play}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.play</groupId>
-                <artifactId>play-netty-server_${version.scala.gen}</artifactId>
+                <artifactId>play-netty-server_${version.scala.epoch}</artifactId>
                 <version>${version.play}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.play</groupId>
-                <artifactId>play-ws_${version.scala.gen}</artifactId>
+                <artifactId>play-ws_${version.scala.epoch}</artifactId>
                 <version>${version.play}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.play</groupId>
-                <artifactId>play-cache_${version.scala.gen}</artifactId>
+                <artifactId>play-cache_${version.scala.epoch}</artifactId>
                 <version>${version.play}</version>
                 <scope>provided</scope>
             </dependency>
@@ -713,12 +732,12 @@
             <!-- Functional programming. -->
             <dependency>
                 <groupId>org.scalaz</groupId>
-                <artifactId>scalaz-core_${version.scala.gen}</artifactId>
+                <artifactId>scalaz-core_${version.scala.epoch}</artifactId>
                 <version>${version.scalaz}</version>
             </dependency>
             <dependency>
                 <groupId>org.scalaz</groupId>
-                <artifactId>scalaz-core_${version.sjs.lib}</artifactId>
+                <artifactId>scalaz-core_${version.sjs.library}</artifactId>
                 <version>${version.scalaz}</version>
                 <scope>provided</scope>
             </dependency>
@@ -726,12 +745,12 @@
             <!-- Protobuf for Scala. -->
             <dependency>
                 <groupId>net.sandrogrzicic</groupId>
-                <artifactId>scalabuff-runtime_${version.scala.gen}</artifactId>
+                <artifactId>scalabuff-runtime_${version.scala.epoch}</artifactId>
                 <version>${version.scala.buff}</version>
             </dependency>
             <dependency>
                 <groupId>net.sandrogrzicic</groupId>
-                <artifactId>scalabuff-compiler_${version.scala.gen}</artifactId>
+                <artifactId>scalabuff-compiler_${version.scala.epoch}</artifactId>
                 <version>${version.scala.buff}</version>
             </dependency>
 
@@ -744,7 +763,7 @@
             <dependency>
                 <groupId>org.eclipse.jgit</groupId>
                 <artifactId>org.eclipse.jgit</artifactId>
-                <version>4.9.1.201712030800-r</version>
+                <version>4.10.0.201712302008-r</version>
             </dependency>
 
             <!-- Indexing and searching. -->
@@ -814,7 +833,7 @@
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-scala_${version.scala.gen}</artifactId>
+                <artifactId>jackson-module-scala_${version.scala.epoch}</artifactId>
                 <version>${version.jackson}</version>
             </dependency>
             <dependency>
@@ -863,7 +882,7 @@
             <dependency>
                 <groupId>org.logback-extensions</groupId>
                 <artifactId>logback-ext-loggly</artifactId>
-                <version>0.1.4</version>
+                <version>0.1.5</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback.contrib</groupId>
@@ -935,7 +954,7 @@
             <!-- -->
             <dependency>
                 <groupId>com.trueaccord.scalapb</groupId>
-                <artifactId>scalapb-runtime_${version.scala.gen}</artifactId>
+                <artifactId>scalapb-runtime_${version.scala.epoch}</artifactId>
                 <version>${version.scala.protobuf}</version>
             </dependency>
             <dependency>
@@ -974,9 +993,33 @@
 
             <!-- Java Testing. -->
             <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${version.junit.jupiter}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${version.junit.jupiter}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>${version.junit.vintage}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-runner</artifactId>
+                <version>${version.junit.platform}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>${version.junit.legacy}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -996,13 +1039,13 @@
             <dependency>
                 <groupId>net.sourceforge.htmlunit</groupId>
                 <artifactId>htmlunit</artifactId>
-                <version>2.28</version>
+                <version>2.29</version>
             </dependency>
             <!-- Note: check AWS, JGIT, Play-WS, IB -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
-                <version>4.4.8</version>
+                <version>4.4.9</version>
                 <exclusions>
                     <!-- Requires logback bridge. -->
                     <exclusion>
@@ -1014,7 +1057,7 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.5.4</version>
+                <version>4.5.5</version>
                 <exclusions>
                     <!-- Requires logback bridge. -->
                     <exclusion>
@@ -1219,7 +1262,7 @@
             <dependency>
                 <groupId>net.java.dev.jna</groupId>
                 <artifactId>jna</artifactId>
-                <version>4.5.0</version>
+                <version>4.5.1</version>
             </dependency>
 
             <!-- Cryptography provider. -->
@@ -1257,7 +1300,7 @@
             </dependency>
             <dependency>
                 <groupId>com.typesafe.slick</groupId>
-                <artifactId>slick_${version.scala.gen}</artifactId>
+                <artifactId>slick_${version.scala.epoch}</artifactId>
                 <version>${version.slick}</version>
             </dependency>
             <dependency>
@@ -1268,7 +1311,7 @@
             <dependency>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
-                <version>3.5.3</version>
+                <version>3.5.4</version>
             </dependency>
             <dependency>
                 <groupId>com.mattbertolini</groupId>
@@ -1285,6 +1328,11 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <!-- Keep for versions:display-plugin-updates -->
+    <prerequisites>
+        <maven>${version.maven}</maven>
+    </prerequisites>
 
     <build>
 
@@ -1327,7 +1375,7 @@
                 <plugin>
                     <groupId>com.carrotgarden.maven</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
-                    <version>1.1.20171204015648</version>
+                    <version>1.2.20171206225205</version>
                 </plugin>
 
                 <plugin>
@@ -1362,7 +1410,7 @@
                         <dependency>
                             <groupId>com.vladsch.flexmark</groupId>
                             <artifactId>flexmark-all</artifactId>
-                            <version>0.28.14</version>
+                            <version>0.30.0</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -1418,7 +1466,7 @@
                         <dependency>
                             <groupId>net.sf.saxon</groupId>
                             <artifactId>Saxon-HE</artifactId>
-                            <version>9.8.0-6</version>
+                            <version>9.8.0-8</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -1462,7 +1510,7 @@
                         <preBuildHookScript>setup</preBuildHookScript>
                         <postBuildHookScript>verify</postBuildHookScript>
                         <goals>
-                            <!-- goals for child maven invocation -->
+                            <!-- Goals for child maven. -->
                             <goal>clean</goal>
                             <goal>install</goal>
                         </goals>
@@ -1471,7 +1519,7 @@
                         <execution>
                             <id>integration-test</id>
                             <goals>
-                                <!-- goals for parent maven invocation -->
+                                <!-- Goals for parent maven. -->
                                 <goal>install</goal>
                                 <goal>run</goal>
                                 <goal>verify</goal>
@@ -1661,10 +1709,25 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${version.maven.testing}</version>
                     <dependencies>
+                        <!-- <dependency> -->
+                        <!-- <groupId>org.apache.maven.surefire</groupId> -->
+                        <!-- <artifactId>surefire-junit4</artifactId> -->
+                        <!-- <version>${version.maven.testing}</version> -->
+                        <!-- </dependency> -->
                         <dependency>
-                            <groupId>org.apache.maven.surefire</groupId>
-                            <artifactId>surefire-junit4</artifactId>
-                            <version>${version.maven.testing}</version>
+                            <groupId>org.junit.platform</groupId>
+                            <artifactId>junit-platform-surefire-provider</artifactId>
+                            <version>${version.junit.platform}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>${version.junit.jupiter}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.junit.vintage</groupId>
+                            <artifactId>junit-vintage-engine</artifactId>
+                            <version>${version.junit.vintage}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -1758,7 +1821,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.4.0</version>
                     <configuration>
                         <instructions>
                             <Service-Component>OSGI-INF/service-component/*.xml</Service-Component>
@@ -1796,12 +1859,533 @@
 
     <profiles>
 
+        <!-- Activate Scalor Maven Plugin version for Eclipse. -->
+        <!-- Required for M2E 1.8 -->
+        <profile>
+            <id>scalor-version</id>
+            <activation>
+                <!-- Eclipse detection: user property set by M2E. -->
+                <property>
+                    <name>m2e.version</name>
+                </property>
+                <!-- Explicit profile activation: user file is present. -->
+                <file>
+                    <exists>.mvn/pom-scalor-version.md</exists>
+                </file>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.carrotgarden.maven</groupId>
+                            <artifactId>scalor-maven-plugin_2.12</artifactId>
+                            <version>LATEST</version>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <!-- Publish release revision. -->
+        <profile>
+            <id>release-revision</id>
+            <activation>
+                <property>
+                    <name>release-revision</name>
+                </property>
+                <file>
+                    <exists>.mvn/pom-release-revision.md</exists>
+                </file>
+            </activation>
+            <properties>
+                <!-- Release tag. -->
+                <release.revision.tag>${revision}</release.revision.tag>
+                <!-- Release comment. -->
+                <release.revision.message>release ${revision}</release.revision.message>
+                <!-- Release descriptor. -->
+                <release.revision.file>release-revision.conf</release.revision.file>
+                <release.revision.path>${project.basedir}/.mvn/${release.revision.file}</release.revision.path>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- Produce descriptor. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <configuration>
+                            <target>
+                                <echo file="${release.revision.path}" append="false">
+<![CDATA[
+# release revision
+version=${revision}
+]]>
+                                </echo>
+                            </target>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>release-revision</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Publish release tag. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-scm-plugin</artifactId>
+                        <executions>
+                            <!-- Add descriptor. -->
+                            <execution>
+                                <id>release-revision-register</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>add</goal>
+                                </goals>
+                                <configuration>
+                                    <pushChanges>false</pushChanges>
+                                    <includes>**/${release.revision.file}</includes>
+                                </configuration>
+                            </execution>
+                            <!-- Commit descriptor. -->
+                            <execution>
+                                <id>release-revision-commit</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>checkin</goal>
+                                </goals>
+                                <configuration>
+                                    <pushChanges>true</pushChanges>
+                                    <message>${release.revision.message}</message>
+                                </configuration>
+                            </execution>
+                            <!-- Tag release. -->
+                            <execution>
+                                <id>release-revision-tag</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>tag</goal>
+                                </goals>
+                                <configuration>
+                                    <pushChanges>true</pushChanges>
+                                    <message>${release.revision.message}</message>
+                                    <tag>${release.revision.tag}</tag>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Scala compiler setup. -->
+        <profile>
+            <id>scalor</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-scalor.md</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Disable default compiler. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                            <skipMain>true</skipMain>
+                        </configuration>
+                    </plugin>
+                    <!-- Enable alternative compiler. -->
+                    <plugin>
+                        <groupId>com.carrotgarden.maven</groupId>
+                        <artifactId>scalor-maven-plugin_2.12</artifactId>
+                        <configuration>
+                            <zincCompileOptions>
+                                -encoding
+                                ${project.build.sourceEncoding}
+                                -target:jvm-${version.java}
+                                -feature
+                                -unchecked
+                                -deprecation
+                                -compileorder:Mixed
+                            </zincCompileOptions>
+                            <defineBridge>
+                                <!-- Required Scala bridge. -->
+                                <dependency>
+                                    <groupId>org.scala-sbt</groupId>
+                                    <artifactId>compiler-bridge_${version.scala.epoch}</artifactId>
+                                    <version>${version.scala.zinc}</version>
+                                </dependency>
+                            </defineBridge>
+                            <defineCompiler>
+                                <!-- Required Scala compiler. -->
+                                <dependency>
+                                    <groupId>org.scala-lang</groupId>
+                                    <artifactId>scala-compiler</artifactId>
+                                    <version>${version.scala.release}</version>
+                                </dependency>
+                            </defineCompiler>
+                            <definePluginList>
+                                <!-- Macro type provider support. -->
+                                <dependency>
+                                    <groupId>org.scalamacros</groupId>
+                                    <artifactId>paradise_${version.scala.release}</artifactId>
+                                    <version>${version.scala.plugin.macro}</version>
+                                </dependency>
+                            </definePluginList>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <!-- Install Eclipse companion plugin. -->
+                                    <goal>eclipse-config</goal>
+                                    <!-- Add Scala sources to the project. -->
+                                    <goal>register-macro</goal>
+                                    <goal>register-main</goal>
+                                    <goal>register-test</goal>
+                                    <!-- Compile Java and Scala in 3 scopes. -->
+                                    <goal>compile-macro</goal>
+                                    <goal>compile-main</goal>
+                                    <goal>compile-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Scala.js compiler setup. -->
+        <profile>
+            <id>scalor-js</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-scalor-js.md</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Disable default compiler. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                            <skipMain>true</skipMain>
+                        </configuration>
+                    </plugin>
+                    <!-- Enable alternative compiler. -->
+                    <plugin>
+                        <groupId>com.carrotgarden.maven</groupId>
+                        <artifactId>scalor-maven-plugin_2.12</artifactId>
+                        <configuration>
+                            <zincCompileOptions>
+                                -P:scalajs:sjsDefinedByDefault
+                                -encoding
+                                ${project.build.sourceEncoding}
+                                -target:jvm-${version.java}
+                                -feature
+                                -unchecked
+                                -deprecation
+                                -compileorder:Mixed
+                            </zincCompileOptions>
+                            <defineBridge>
+                                <!-- Required Scala bridge. -->
+                                <dependency>
+                                    <groupId>org.scala-sbt</groupId>
+                                    <artifactId>compiler-bridge_${version.scala.epoch}</artifactId>
+                                    <version>${version.scala.zinc}</version>
+                                </dependency>
+                            </defineBridge>
+                            <defineCompiler>
+                                <!-- Required Scala compiler. -->
+                                <dependency>
+                                    <groupId>org.scala-lang</groupId>
+                                    <artifactId>scala-compiler</artifactId>
+                                    <version>${version.scala.release}</version>
+                                </dependency>
+                            </defineCompiler>
+                            <definePluginList>
+                                <!-- Macro type provider support. -->
+                                <dependency>
+                                    <groupId>org.scalamacros</groupId>
+                                    <artifactId>paradise_${version.scala.release}</artifactId>
+                                    <version>${version.scala.plugin.macro}</version>
+                                </dependency>
+                                <!-- Generate Scala.js *.sjsir classes. -->
+                                <dependency>
+                                    <groupId>org.scala-js</groupId>
+                                    <artifactId>scalajs-compiler_${version.scala.release}</artifactId>
+                                    <version>${version.sjs.release}</version>
+                                </dependency>
+                            </definePluginList>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <!-- Install Eclipse companion plugin. -->
+                                    <goal>eclipse-config</goal>
+                                    <!-- Add Scala sources to the project. -->
+                                    <goal>register-macro</goal>
+                                    <goal>register-main</goal>
+                                    <goal>register-test</goal>
+                                    <!-- Compile Java and Scala in 3 scopes. -->
+                                    <goal>compile-macro</goal>
+                                    <goal>compile-main</goal>
+                                    <goal>compile-test</goal>
+                                    <!-- Generate Scala.js runtime.js JavaScript. -->
+                                    <goal>scala-js-link-main</goal>
+                                    <goal>scala-js-link-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Scala.js JUnit testing. -->
+        <profile>
+            <id>scalor-junit-tools</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-scalor-junit-tools.md</exists>
+                </file>
+            </activation>
+            <dependencies>
+                <!--
+                    Enable JUnit 4/5 testing.
+                    JS tests are using JUnit 4, and JVM tests are using JUnit 5.
+                    JS tests are invoked inside JS-VM, and JVM tests are invoked inside JVM.
+                -->
+                <dependency>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-api</artifactId>
+                    <version>${version.junit.jupiter}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.platform</groupId>
+                    <artifactId>junit-platform-runner</artifactId>
+                    <version>${version.junit.platform}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-engine</artifactId>
+                    <version>${version.junit.jupiter}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                    <version>${version.junit.vintage}</version>
+                    <scope>test</scope>
+                </dependency>
+                <!--
+                    Enable JUnit Scala.js testing.
+                    Provides custom JUnit runners, which run JUnit 4 tests inside JS-VM.
+                    Note: keep order: after org.junit.* dependencies (see scalajs-junit-test-runtime).
+                -->
+                <dependency>
+                    <groupId>com.carrotgarden.sjs</groupId>
+                    <artifactId>scala-js-junit-tools</artifactId>
+                    <version>1.0.1.20180129202557</version>
+                    <scope>test</scope>
+                </dependency>
+                <!-- Enable logging of JS-VM output from scala-js-junit-tools. -->
+                <dependency>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                    <version>1.2.3</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.carrotgarden.maven</groupId>
+                        <artifactId>scalor-maven-plugin_2.12</artifactId>
+                        <configuration>
+                            <defineCompiler>
+                                <!-- Required Scala compiler. -->
+                                <dependency>
+                                    <groupId>org.scala-lang</groupId>
+                                    <artifactId>scala-compiler</artifactId>
+                                    <version>${version.scala.release}</version>
+                                </dependency>
+                                <!--
+                                    Convert JUnit annotations to Scala.js JUnit meta data.
+                                    This dependency provides replacement JUnit *.sjsir classes.
+                                -->
+                                <dependency>
+                                    <groupId>org.scala-js</groupId>
+                                    <artifactId>scalajs-junit-test-runtime_${version.scala.epoch}</artifactId>
+                                    <version>${version.sjs.release}</version>
+                                </dependency>
+                            </defineCompiler>
+                            <definePluginList>
+                                <!-- Macro type provider support. -->
+                                <dependency>
+                                    <groupId>org.scalamacros</groupId>
+                                    <artifactId>paradise_${version.scala.release}</artifactId>
+                                    <version>${version.scala.plugin.macro}</version>
+                                </dependency>
+                                <!-- Generate Scala.js *.sjsir classes. -->
+                                <dependency>
+                                    <groupId>org.scala-js</groupId>
+                                    <artifactId>scalajs-compiler_${version.scala.release}</artifactId>
+                                    <version>${version.sjs.release}</version>
+                                </dependency>
+                                <!--
+                                    Convert JUnit annotations to Scala.js JUnit meta data.
+                                    This plugin does actual conversion of JUnit test classes for JS-VM.
+                                -->
+                                <dependency>
+                                    <groupId>org.scala-js</groupId>
+                                    <artifactId>scalajs-junit-test-plugin_${version.scala.release}</artifactId>
+                                    <version>${version.sjs.release}</version>
+                                </dependency>
+                            </definePluginList>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <!-- Provide Scala.js JS-VM testing environment. -->
+                                    <goal>scala-js-env-prov-webjars</goal>
+                                    <goal>scala-js-env-prov-nodejs</goal>
+                                    <goal>scala-js-env-conf-nodejs</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Use custom maven plugin annotations. -->
+        <profile>
+            <id>plugin-extra</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-plugin-extra.md</exists>
+                </file>
+            </activation>
+            <properties>
+                <version.maven.plugin.extra>1.0.20171214023519</version.maven.plugin.extra>
+            </properties>
+            <dependencies>
+                <!-- Provide custom annotations. -->
+                <dependency>
+                    <groupId>com.carrotgarden.maven</groupId>
+                    <artifactId>maven-plugin-tools-annotations</artifactId>
+                    <version>${version.maven.plugin.extra}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-plugin-plugin</artifactId>
+                        <dependencies>
+                            <!-- Provide custom extractor. -->
+                            <dependency>
+                                <groupId>com.carrotgarden.maven</groupId>
+                                <artifactId>maven-plugin-tools-annotations</artifactId>
+                                <version>${version.maven.plugin.extra}</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <!-- Use only custom extractor. -->
+                            <extractors>
+                                <extractor>java-annotations-extra</extractor>
+                            </extractors>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-descriptor</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>descriptor</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Use release stamp from the environment variable. -->
+        <profile>
+            <id>env-release-stamp</id>
+            <activation>
+                <property>
+                    <name>env.RELEASE_STAMP</name>
+                </property>
+            </activation>
+            <properties>
+                <release.stamp>${env.RELEASE_STAMP}</release.stamp>
+            </properties>
+        </profile>
+
+        <!-- Use scala version 2.11. -->
+        <profile>
+            <id>scala-2.11</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-scala-2.11.md</exists>
+                </file>
+            </activation>
+            <properties>
+                <version.scala211.epoch>2.11</version.scala211.epoch>
+                <version.scala211.release>2.11.0</version.scala211.release>
+                <version.scala.epoch>${version.scala211.epoch}</version.scala.epoch>
+                <version.scala.release>${version.scala211.release}</version.scala.release>
+            </properties>
+        </profile>
+
+        <!-- Use scala version 2.12. -->
+        <profile>
+            <id>scala-2.12</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-scala-2.12.md</exists>
+                </file>
+            </activation>
+            <properties>
+                <version.scala212.epoch>2.12</version.scala212.epoch>
+                <version.scala212.release>2.12.0</version.scala212.release>
+                <version.scala.epoch>${version.scala212.epoch}</version.scala.epoch>
+                <version.scala.release>${version.scala212.release}</version.scala.release>
+            </properties>
+        </profile>
+
+        <!-- Use scala version 2.13. -->
+        <profile>
+            <id>scala-2.13</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-scala-2.13.md</exists>
+                </file>
+            </activation>
+            <properties>
+                <version.scala213.epoch>2.13</version.scala213.epoch>
+                <version.scala213.release>2.13.0</version.scala213.release>
+                <version.scala.epoch>${version.scala213.epoch}</version.scala.epoch>
+                <version.scala.release>${version.scala213.release}</version.scala.release>
+            </properties>
+        </profile>
+
         <!-- Disable any testing. -->
         <profile>
             <id>skip-test</id>
             <activation>
                 <file>
-                    <exists>pom-skip-test.md</exists>
+                    <exists>.mvn/pom-skip-test.md</exists>
                 </file>
             </activation>
             <build>
@@ -1872,7 +2456,7 @@
             <id>resolve</id>
             <activation>
                 <file>
-                    <exists>pom-resolve.md</exists>
+                    <exists>.mvn/pom-resolve.md</exists>
                 </file>
             </activation>
             <properties>
@@ -1920,15 +2504,21 @@
             <id>repo-random-scalor</id>
             <activation>
                 <file>
-                    <exists>pom-repo-random-scalor.md</exists>
+                    <exists>.mvn/pom-repo-random-scalor.md</exists>
                 </file>
             </activation>
             <repositories>
                 <repository>
                     <id>random-scalor</id>
-                    <url>https://dl.bintray.com/random-scalor/maven</url>
+                    <url>http://dl.bintray.com/random-scalor/maven</url>
                 </repository>
             </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>random-scalor</id>
+                    <url>http://dl.bintray.com/random-scalor/maven</url>
+                </pluginRepository>
+            </pluginRepositories>
         </profile>
 
         <!-- Bintray random-maven. -->
@@ -1936,13 +2526,19 @@
             <id>repo-random-maven</id>
             <activation>
                 <file>
-                    <exists>pom-repo-random-maven.md</exists>
+                    <exists>.mvn/pom-repo-random-maven.md</exists>
                 </file>
             </activation>
+            <repositories>
+                <repository>
+                    <id>random-maven</id>
+                    <url>http://dl.bintray.com/random-maven/maven</url>
+                </repository>
+            </repositories>
             <pluginRepositories>
                 <pluginRepository>
                     <id>random-maven</id>
-                    <url>https://dl.bintray.com/random-maven/maven</url>
+                    <url>http://dl.bintray.com/random-maven/maven</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
@@ -1952,7 +2548,7 @@
             <id>distro-bintray</id>
             <activation>
                 <file>
-                    <exists>pom-distro-bintray.md</exists>
+                    <exists>.mvn/pom-distro-bintray.md</exists>
                 </file>
             </activation>
             <properties>
@@ -1995,7 +2591,7 @@
             <id>upload-bintray</id>
             <activation>
                 <file>
-                    <exists>pom-upload-bintray.md</exists>
+                    <exists>.mvn/pom-upload-bintray.md</exists>
                 </file>
             </activation>
             <properties>
@@ -2037,7 +2633,7 @@
         <profile>
             <id>m2e-lifecycle-mapping</id>
             <activation>
-                <!-- Eclipse detection. -->
+                <!-- Eclipse detection: user property set by Eclipse/M2E. -->
                 <property>
                     <name>m2e.version</name>
                 </property>
@@ -2052,6 +2648,86 @@
                             <configuration>
                                 <lifecycleMappingMetadata>
                                     <pluginExecutions>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.apache.felix</groupId>
+                                                <artifactId>maven-bundle-plugin</artifactId>
+                                                <versionRange>[0,)</versionRange>
+                                                <goals>
+                                                    <goal>manifest</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>com.carrotgarden.maven</groupId>
+                                                <artifactId>flatten-maven-plugin</artifactId>
+                                                <versionRange>[0,)</versionRange>
+                                                <goals>
+                                                    <goal>flatten</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.codehaus.plexus</groupId>
+                                                <artifactId>plexus-component-metadata</artifactId>
+                                                <versionRange>[0,)</versionRange>
+                                                <goals>
+                                                    <goal>generate-metadata</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>com.github.klieber</groupId>
+                                                <artifactId>phantomjs-maven-plugin</artifactId>
+                                                <versionRange>[0,)</versionRange>
+                                                <goals>
+                                                    <goal>install</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>com.github.eirslett</groupId>
+                                                <artifactId>frontend-maven-plugin</artifactId>
+                                                <versionRange>[0,)</versionRange>
+                                                <goals>
+                                                    <goal>install-node-and-npm</goal>
+                                                    <goal>npm</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.apache.maven.plugins</groupId>
+                                                <artifactId>maven-plugin-plugin</artifactId>
+                                                <versionRange>[0,)</versionRange>
+                                                <goals>
+                                                    <goal>descriptor</goal>
+                                                    <goal>addPluginArtifactMetadata</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
                                         <pluginExecution>
                                             <pluginExecutionFilter>
                                                 <groupId>org.codehaus.gmaven</groupId>
@@ -2159,7 +2835,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore></ignore>
+                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                         <pluginExecution>
@@ -2174,8 +2850,8 @@
                                             </pluginExecutionFilter>
                                             <action>
                                                 <execute>
-                                                    <runOnIncremental>false</runOnIncremental>
                                                     <runOnConfiguration>true</runOnConfiguration>
+                                                    <runOnIncremental>false</runOnIncremental>
                                                 </execute>
                                             </action>
                                         </pluginExecution>
@@ -2190,9 +2866,25 @@
                                             </pluginExecutionFilter>
                                             <action>
                                                 <execute>
-                                                    <runOnIncremental>false</runOnIncremental>
                                                     <runOnConfiguration>true</runOnConfiguration>
+                                                    <runOnIncremental>false</runOnIncremental>
                                                 </execute>
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.apache.maven.plugins</groupId>
+                                                <artifactId>maven-invoker-plugin</artifactId>
+                                                <versionRange>[0,)</versionRange>
+                                                <goals>
+                                                    <goal>install</goal>
+                                                    <goal>integration-test</goal>
+                                                    <goal>verify</goal>
+                                                    <goal>run</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
@@ -2212,7 +2904,7 @@
                 <activeByDefault>false</activeByDefault>
                 <!-- https://github.com/mojohaus/flatten-maven-plugin/issues/57 -->
                 <!-- <file> -->
-                <!-- <exists>pom-service.md</exists> -->
+                <!-- <exists>.mvn/pom-service.md</exists> -->
                 <!-- </file> -->
             </activation>
 
@@ -2574,7 +3266,7 @@
             <id>no-repo</id>
             <activation>
                 <file>
-                    <exists>pom-no-repo.md</exists>
+                    <exists>.mvn/pom-no-repo.md</exists>
                 </file>
             </activation>
             <build>
@@ -2602,7 +3294,7 @@
             <id>no-install</id>
             <activation>
                 <file>
-                    <exists>pom-no-install.md</exists>
+                    <exists>.mvn/pom-no-install.md</exists>
                 </file>
             </activation>
             <build>
@@ -2623,7 +3315,7 @@
             <id>no-deploy</id>
             <activation>
                 <file>
-                    <exists>pom-no-deploy.md</exists>
+                    <exists>.mvn/pom-no-deploy.md</exists>
                 </file>
             </activation>
             <build>
@@ -2646,12 +3338,33 @@
             </build>
         </profile>
 
+        <!-- Skip integraton test invocaton. -->
+        <profile>
+            <id>no-invoke</id>
+            <activation>
+                <file>
+                    <exists>.mvn/pom-no-invoke.md</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-invoker-plugin</artifactId>
+                        <configuration>
+                            <skipInvocation>true</skipInvocation>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Scala Protocol Buffers. -->
         <profile>
             <id>scala-protobuf</id>
             <activation>
                 <file>
-                    <exists>pom-scala-protobuf.md</exists>
+                    <exists>.mvn/pom-scala-protobuf.md</exists>
                 </file>
             </activation>
             <properties>
@@ -2689,7 +3402,7 @@
                         <dependencies>
                             <dependency>
                                 <groupId>com.trueaccord.scalapb</groupId>
-                                <artifactId>scalapbc_${version.scala.gen}</artifactId>
+                                <artifactId>scalapbc_${version.scala.epoch}</artifactId>
                                 <version>${version.scala.protobuf}</version>
                             </dependency>
                         </dependencies>
@@ -2707,7 +3420,7 @@
                                     <classpathScope>compile</classpathScope>
                                     <executableDependency>
                                         <groupId>com.trueaccord.scalapb</groupId>
-                                        <artifactId>scalapbc_${version.scala.gen}</artifactId>
+                                        <artifactId>scalapbc_${version.scala.epoch}</artifactId>
                                     </executableDependency>
                                     <arguments>
                                         <argument>-v${scalaPbProtoVersion}</argument>
@@ -2750,7 +3463,7 @@
             <id>module-package</id>
             <activation>
                 <file>
-                    <exists>pom-module-package.md</exists>
+                    <exists>.mvn/pom-module-package.md</exists>
                 </file>
             </activation>
             <properties>
@@ -2816,7 +3529,7 @@
             <id>shade-arkon</id>
             <activation>
                 <file>
-                    <exists>pom-shade.md</exists>
+                    <exists>.mvn/pom-shade.md</exists>
                 </file>
             </activation>
             <properties>
@@ -2840,7 +3553,7 @@
             <id>shade-config</id>
             <activation>
                 <file>
-                    <exists>pom-shade.md</exists>
+                    <exists>.mvn/pom-shade.md</exists>
                 </file>
                 <property>
                     <name>!shade.invoke</name><!-- see profile:shade-invoke -->
@@ -2957,7 +3670,7 @@
             <id>shade-invoke</id>
             <activation>
                 <file>
-                    <exists>pom-shade.md</exists>
+                    <exists>.mvn/pom-shade.md</exists>
                 </file>
                 <property>
                     <name>shade.invoke</name><!-- see profile:shade-config -->
@@ -3006,7 +3719,7 @@
             <id>git-clone</id>
             <activation>
                 <file>
-                    <exists>pom-git-clone.md</exists>
+                    <exists>.mvn/pom-git-clone.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3111,7 +3824,7 @@
             <id>repo-typesafe-snapshots</id>
             <activation>
                 <file>
-                    <exists>pom-repo-typesafe-snapshots.md</exists>
+                    <exists>.mvn/pom-repo-typesafe-snapshots.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3147,7 +3860,7 @@
             <id>repo-typesafe-releases</id>
             <activation>
                 <file>
-                    <exists>pom-repo-typesafe-releases.md</exists>
+                    <exists>.mvn/pom-repo-typesafe-releases.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3183,7 +3896,7 @@
             <id>play</id>
             <activation>
                 <file>
-                    <exists>pom-play.md</exists>
+                    <exists>.mvn/pom-play.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3312,7 +4025,7 @@
                                 <configuration>
                                     <sbtVersion>${version.scala.sbt}</sbtVersion>
                                     <playVersion>${version.play}</playVersion>
-                                    <scalaVersion>${version.scala.rel}</scalaVersion>
+                                    <scalaVersion>${version.scala.release}</scalaVersion>
                                 </configuration>
                             </execution>
                         </executions>
@@ -3326,7 +4039,7 @@
             <id>xform</id>
             <activation>
                 <file>
-                    <exists>pom-xform.md</exists>
+                    <exists>.mvn/pom-xform.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3536,7 +4249,7 @@
             <id>xform-arkon</id>
             <activation>
                 <file>
-                    <exists>pom-xform-arkon.md</exists>
+                    <exists>.mvn/pom-xform-arkon.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3580,7 +4293,7 @@
             <id>eclipse</id>
             <activation>
                 <file>
-                    <exists>pom-eclipse.md</exists>
+                    <exists>.mvn/pom-eclipse.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3655,6 +4368,8 @@
                                 <format>'v'yyyyMMdd-HHmm</format>
                                 <timestampProvider>jgit</timestampProvider>
                                 <!--jgit.ignore> pom.xml </jgit.ignore -->
+                                <jgit.dirtyWorkingTree>warning</jgit.dirtyWorkingTree>
+                                <!-- <jgit.dirtyWorkingTree>warning|error|ignore</jgit.dirtyWorkingTree> -->
                             </configuration>
                         </plugin>
                         <plugin>
@@ -3775,7 +4490,7 @@
             <id>dependency-tree</id>
             <activation>
                 <file>
-                    <exists>pom-dependency-tree.md</exists>
+                    <exists>.mvn/pom-dependency-tree.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3815,7 +4530,7 @@
             <id>verify</id>
             <activation>
                 <file>
-                    <exists>pom-verify.md</exists>
+                    <exists>.mvn/pom-verify.md</exists>
                 </file>
             </activation>
             <build>
@@ -3841,7 +4556,7 @@
             <id>jmh</id>
             <activation>
                 <file>
-                    <exists>pom-jmh.md</exists>
+                    <exists>.mvn/pom-jmh.md</exists>
                 </file>
             </activation>
             <dependencies>
@@ -3885,7 +4600,7 @@
             <id>scalabuff</id>
             <activation>
                 <file>
-                    <exists>pom-scalabuff.md</exists>
+                    <exists>.mvn/pom-scalabuff.md</exists>
                 </file>
             </activation>
             <properties>
@@ -3929,7 +4644,7 @@
                                     <includePluginDependencies>true</includePluginDependencies>
                                     <executableDependency>
                                         <groupId>net.sandrogrzicic</groupId>
-                                        <artifactId>scalabuff-compiler_${version.scala.gen}</artifactId>
+                                        <artifactId>scalabuff-compiler_${version.scala.epoch}</artifactId>
                                     </executableDependency>
                                     <arguments>
                                         <argument>--proto_path=${scalabuffMainInputFolder}</argument>
@@ -3941,7 +4656,7 @@
                         <dependencies>
                             <dependency>
                                 <groupId>net.sandrogrzicic</groupId>
-                                <artifactId>scalabuff-compiler_${version.scala.gen}</artifactId>
+                                <artifactId>scalabuff-compiler_${version.scala.epoch}</artifactId>
                                 <version>${version.scala.buff}</version>
                             </dependency>
                         </dependencies>
@@ -3955,7 +4670,7 @@
             <id>sbe</id>
             <activation>
                 <file>
-                    <exists>pom-sbe.md</exists>
+                    <exists>.mvn/pom-sbe.md</exists>
                 </file>
             </activation>
             <properties>
@@ -4073,7 +4788,7 @@
             <id>flatbuf</id>
             <activation>
                 <file>
-                    <exists>pom-flatbuf.md</exists>
+                    <exists>.mvn/pom-flatbuf.md</exists>
                 </file>
             </activation>
             <properties>
@@ -4165,7 +4880,7 @@
             <id>protobuf</id>
             <activation>
                 <file>
-                    <exists>pom-protobuf.md</exists>
+                    <exists>.mvn/pom-protobuf.md</exists>
                 </file>
             </activation>
             <properties>
@@ -4239,11 +4954,11 @@
             <id>java-scala</id>
             <activation>
                 <file>
-                    <exists>pom-java-scala.md</exists>
+                    <exists>.mvn/pom-java-scala.md</exists>
                 </file>
             </activation>
             <properties>
-                <scala.compiler.additionalParams><![CDATA[-Xsource:${version.scala.gen}]]></scala.compiler.additionalParams>
+                <scala.compiler.additionalParams><![CDATA[-Xsource:${version.scala.epoch}]]></scala.compiler.additionalParams>
             </properties>
             <build>
                 <plugins>
@@ -4310,8 +5025,8 @@
                         <groupId>net.alchim31.maven</groupId>
                         <artifactId>scala-maven-plugin</artifactId>
                         <configuration>
-                            <scalaVersion>${version.scala.rel}</scalaVersion>
-                            <scalaCompatVersion>${version.scala.gen}</scalaCompatVersion>
+                            <scalaVersion>${version.scala.release}</scalaVersion>
+                            <scalaCompatVersion>${version.scala.epoch}</scalaCompatVersion>
                             <compileOrder>JavaThenScala</compileOrder>
                             <useZincServer>true</useZincServer>
                             <recompileMode>incremental</recompileMode>
@@ -4349,7 +5064,7 @@
             <activation>
                 <!-- User activation. -->
                 <file>
-                    <exists>pom-java-scala.md</exists>
+                    <exists>.mvn/pom-java-scala.md</exists>
                 </file>
                 <!-- Eclipse detection. -->
                 <property>
@@ -4383,8 +5098,10 @@
                                             <entry key="eclipse.preferences.version" value="1" />
                                             <entry key="target" value="jvm-${version.java}" />
                                             <entry key="scala.compiler.useProjectSettings" value="true" />
-                                            <entry key="scala.compiler.sourceLevel" value="${version.scala.gen}" />
-                                            <entry key="scala.compiler.installation" value="${version.scala.eclipse}" />
+                                            <entry key="scala.compiler.sourceLevel" value="${version.scala.epoch}" />
+                                            <!--
+                                                <entry key="scala.compiler.installation" value="${version.scala.eclipse}"
+                                                /> -->
                                             <entry key="scala.compiler.additionalParams" value="${scala.compiler.additionalParams}" />
                                         </propertyfile>
                                     </target>
@@ -4401,15 +5118,15 @@
             <id>scala-js-lib</id>
             <activation>
                 <file>
-                    <exists>pom-scala-js-lib.md</exists>
+                    <exists>.mvn/pom-scala-js-lib.md</exists>
                 </file>
             </activation>
             <properties>
                 <!-- Scala.js compiler plugin identification. -->
                 <sjs.plugin.groupId>org.scala-js</sjs.plugin.groupId>
-                <sjs.plugin.artifactId>scalajs-compiler_${version.scala.rel}</sjs.plugin.artifactId>
-                <sjs.plugin.version>${version.sjs.rel}</sjs.plugin.version>
-                <scala.compiler.additionalParams><![CDATA[-Xsource:${version.scala.gen} -P:scalajs:sjsDefinedByDefault]]></scala.compiler.additionalParams>
+                <sjs.plugin.artifactId>scalajs-compiler_${version.scala.release}</sjs.plugin.artifactId>
+                <sjs.plugin.version>${version.sjs.release}</sjs.plugin.version>
+                <scala.compiler.additionalParams><![CDATA[-Xsource:${version.scala.epoch} -P:scalajs:sjsDefinedByDefault]]></scala.compiler.additionalParams>
             </properties>
             <build>
                 <plugins>
@@ -4449,7 +5166,7 @@
             <activation>
                 <!-- User activation. -->
                 <file>
-                    <exists>pom-scala-js-lib.md</exists>
+                    <exists>.mvn/pom-scala-js-lib.md</exists>
                 </file>
                 <!-- Eclipse detection. -->
                 <property>
@@ -4522,7 +5239,7 @@
             <id>scala-js-run</id>
             <activation>
                 <file>
-                    <exists>pom-scala-js-run.md</exists>
+                    <exists>.mvn/pom-scala-js-run.md</exists>
                 </file>
             </activation>
             <!-- Scala.js sjsir libraries use scope=provided. -->
@@ -4641,13 +5358,13 @@
                             <dependency>
                                 <groupId>org.scala-lang</groupId>
                                 <artifactId>scala-library</artifactId>
-                                <version>${version.scala.rel}</version>
+                                <version>${version.scala.release}</version>
                             </dependency>
                             <!-- provide scala-js linker -->
                             <dependency>
                                 <groupId>org.scala-js</groupId>
                                 <artifactId>scalajs-cli_${version.sjs.sca}</artifactId>
-                                <version>${version.sjs.rel}</version>
+                                <version>${version.sjs.release}</version>
                             </dependency>
                         </dependencies>
                         <executions>
@@ -4701,7 +5418,7 @@
             <id>ignore-symbol-file</id>
             <activation>
                 <file>
-                    <exists>pom-ignore-symbol-file.md</exists>
+                    <exists>.mvn/pom-ignore-symbol-file.md</exists>
                 </file>
             </activation>
             <build>
@@ -4729,14 +5446,14 @@
             <id>scala-meta-paradise</id>
             <activation>
                 <file>
-                    <exists>pom-scala-meta-paradise.md</exists>
+                    <exists>.mvn/pom-scala-meta-paradise.md</exists>
                 </file>
             </activation>
             <properties>
                 <!-- Scala/Meta compiler plugin identification. -->
                 <meta.plugin.groupId>org.scalameta</meta.plugin.groupId>
-                <meta.plugin.artifactId>paradise_${version.scala.rel}</meta.plugin.artifactId>
-                <meta.plugin.version>${version.scala.plug.meta}</meta.plugin.version>
+                <meta.plugin.artifactId>paradise_${version.scala.release}</meta.plugin.artifactId>
+                <meta.plugin.version>${version.scala.plugin.meta}</meta.plugin.version>
                 <!-- Scala/Meta compiler plugin Eclipse integration. -->
                 <meta.plugin.name>macroparadise</meta.plugin.name>
                 <meta.plugin.directory>${project.build.directory}/scala-plugin</meta.plugin.directory>
@@ -4822,7 +5539,7 @@
             <id>scala-macro-paradise</id>
             <activation>
                 <file>
-                    <exists>pom-scala-macro-paradise.md</exists>
+                    <exists>.mvn/pom-scala-macro-paradise.md</exists>
                 </file>
             </activation>
             <build>
@@ -4834,8 +5551,8 @@
                             <compilerPlugins>
                                 <compilerPlugin>
                                     <groupId>org.scalamacros</groupId>
-                                    <artifactId>paradise_${version.scala.rel}</artifactId>
-                                    <version>${version.scala.plug.macro}</version>
+                                    <artifactId>paradise_${version.scala.release}</artifactId>
+                                    <version>${version.scala.plugin.macro}</version>
                                 </compilerPlugin>
                             </compilerPlugins>
                         </configuration>
@@ -4849,7 +5566,7 @@
             <id>sign-artifacts</id>
             <activation>
                 <file>
-                    <exists>pom-sign-artifacts.md</exists>
+                    <exists>.mvn/pom-sign-artifacts.md</exists>
                 </file>
             </activation>
             <build>
@@ -4864,6 +5581,13 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <!-- GPG 2.0 options -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -4876,7 +5600,7 @@
             <id>attach-sources</id>
             <activation>
                 <file>
-                    <exists>pom-attach-sources.md</exists>
+                    <exists>.mvn/pom-attach-sources.md</exists>
                 </file>
             </activation>
             <build>
@@ -4899,31 +5623,45 @@
             </build>
         </profile>
 
-        <!-- Attach javadocs for deployment. -->
+        <!-- Attach javadoc/scaladoc for deployment. -->
         <profile>
             <id>attach-javadoc</id>
             <activation>
                 <file>
-                    <exists>pom-attach-javadoc.md</exists>
+                    <exists>.mvn/pom-attach-javadoc.md</exists>
                 </file>
             </activation>
             <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <!-- Override default execution id. -->
-                                <id>attach-javadoc</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <!-- Override default execution id. -->
+                                    <id>attach-javadoc</id>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>jar</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.carrotgarden.maven</groupId>
+                            <artifactId>scalor-maven-plugin_2.12</artifactId>
+                            <executions>
+                                <execution>
+                                    <goals>
+                                        <goal>scaladoc-macro</goal>
+                                        <goal>scaladoc-main</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
 
@@ -4994,7 +5732,7 @@
             <id>distro-public</id>
             <activation>
                 <file>
-                    <exists>pom-distro-public.md</exists>
+                    <exists>.mvn/pom-distro-public.md</exists>
                 </file>
             </activation>
             <distributionManagement>
@@ -5014,7 +5752,7 @@
             <id>distro-secret</id>
             <activation>
                 <file>
-                    <exists>pom-distro-secret.md</exists>
+                    <exists>.mvn/pom-distro-secret.md</exists>
                 </file>
             </activation>
             <distributionManagement>
@@ -5034,7 +5772,7 @@
             <id>distro-sonatype</id>
             <activation>
                 <file>
-                    <exists>pom-distro-sonatype.md</exists>
+                    <exists>.mvn/pom-distro-sonatype.md</exists>
                 </file>
             </activation>
             <distributionManagement>
@@ -5056,7 +5794,7 @@
             <id>repo-sonatype-snapshots</id>
             <activation>
                 <file>
-                    <exists>pom-repo-sonatype-snapshots.md</exists>
+                    <exists>.mvn/pom-repo-sonatype-snapshots.md</exists>
                 </file>
             </activation>
             <repositories>
@@ -5092,7 +5830,7 @@
             <id>repo-sonatype-releases</id>
             <activation>
                 <file>
-                    <exists>pom-repo-sonatype-releases.md</exists>
+                    <exists>.mvn/pom-repo-sonatype-releases.md</exists>
                 </file>
             </activation>
             <repositories>
@@ -5375,37 +6113,40 @@
 
     <reporting>
 
-        <plugins>
+        <!-- <plugins> -->
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
-            </plugin>
+        <!-- <plugin> -->
+        <!-- <groupId>org.apache.maven.plugins</groupId> -->
+        <!-- <artifactId>maven-project-info-reports-plugin</artifactId> -->
+        <!-- <version>2.9</version> -->
+        <!-- </plugin> -->
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
-            </plugin>
+        <!-- <plugin> -->
+        <!-- <groupId>org.apache.maven.plugins</groupId> -->
+        <!-- <artifactId>maven-jxr-plugin</artifactId> -->
+        <!-- <version>2.5</version> -->
+        <!-- </plugin> -->
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${version.maven.javadoc}</version>
-                <configuration>
-                    <quiet>true</quiet>
-                    <show>protected</show>
-                    <linksource>true</linksource>
-                    <windowtitle><![CDATA[${project.artifactId}-${project.version} / ${projectTimeISO}]]></windowtitle>
-                    <doctitle><![CDATA[${project.artifactId}-${project.version} / ${projectTimeISO}]]></doctitle>
-                    <header><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} / ${projectTimeISO}]]></header>
-                    <footer><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} / ${projectTimeISO}]]></footer>
-                    <bottom><![CDATA[Copyright © {inceptionYear}-{currentYear} <a href="${project.organization.url}" target="_blank">${project.organization.name}</a>. All Rights Reserved.]]></bottom>
-                </configuration>
-            </plugin>
+        <!-- <plugin> -->
+        <!-- <groupId>org.apache.maven.plugins</groupId> -->
+        <!-- <artifactId>maven-javadoc-plugin</artifactId> -->
+        <!-- <version>${version.maven.javadoc}</version> -->
+        <!-- <configuration> -->
+        <!-- <quiet>true</quiet> -->
+        <!-- <show>protected</show> -->
+        <!-- <linksource>true</linksource> -->
+        <!-- <windowtitle><![CDATA[${project.artifactId}-${project.version} / ${projectTimeISO}]]></windowtitle> -->
+        <!-- <doctitle><![CDATA[${project.artifactId}-${project.version} / ${projectTimeISO}]]></doctitle> -->
+        <!-- <header><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} /
+            ${projectTimeISO}]]></header> -->
+        <!-- <footer><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} /
+            ${projectTimeISO}]]></footer> -->
+        <!-- <bottom><![CDATA[Copyright © {inceptionYear}-{currentYear} <a href="${project.organization.url}" target="_blank">${project.organization.name}</a>.
+            All Rights Reserved.]]></bottom> -->
+        <!-- </configuration> -->
+        <!-- </plugin> -->
 
-        </plugins>
+        <!-- </plugins> -->
 
     </reporting>
 

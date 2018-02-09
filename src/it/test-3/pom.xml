@@ -4,54 +4,41 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.carrotgarden.maven</groupId>
-    <artifactId>flatten-maven-plugin-test-1</artifactId>
+    <artifactId>flatten-maven-plugin-test-3</artifactId>
     <version>${revision}</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <url>http://test-1</url>
+    <description>Multi-module with dependency on scala identity.</description>
 
-    <description>Basic project.</description>
+    <modules>
+        <!-- Provide scala idenitiy. -->
+        <module>a</module>
+        <!-- Consume scala identity. -->
+        <module>b</module>
+    </modules>
 
     <properties>
-        <revision>0.0.0</revision>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Resource identity sequence. -->
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+
+        <!-- Streaming release version. -->
+        <release.epoch>1.2.3</release.epoch>
+        <release.stamp>${maven.build.timestamp}</release.stamp>
+        <revision>${release.epoch}.${release.stamp}</revision>
+
+        <!-- Emulate scala artifact. -->
+        <vesion.scala.gen>2.12</vesion.scala.gen>
+
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
     </properties>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>com.carrotgarden.util</groupId>
-            <artifactId>carrot-util-values</artifactId>
-            <version>[1,2)</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>[4,5)</version>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
-
-    <profiles>
-        <profile>
-            <id>test-1</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-            </plugin>
 
             <plugin>
                 <groupId>com.carrotgarden.maven</groupId>

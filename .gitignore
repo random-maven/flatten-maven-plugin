@@ -8,3 +8,5 @@ target/
 .cache*
 
 /pom.xml.flatten
+
+test-repo/
