@@ -91,16 +91,23 @@
             <version>0.0.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
+
         <plugins>
 
             <!-- Self-host project build. -->
             <plugin>
                 <groupId>com.carrotgarden.maven</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.3.20180209191138</version>
+                <version>1.3.20180210194220</version>
             </plugin>
 
             <!-- Generate plugin descriptor. -->

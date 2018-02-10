@@ -41,6 +41,11 @@ import org.sonatype.plexus.build.incremental.BuildContext;
 public class FlattenMojo extends AbstractMojo {
 
 	/**
+	 * Default pattern to parse dependency:resolve report.
+	 */
+	static final String DEPENDENCY_REGEX = "^[\\s]*([^:\\s]+):([^:\\s]+):([^:\\s]+):([^:\\s]+):([^:\\s]+)[\\s]*.*$";
+
+	/**
 	 * Current maven project.
 	 */
 	@Parameter(defaultValue = "${project}", required = true, readonly = true)
@@ -87,7 +92,7 @@ public class FlattenMojo extends AbstractMojo {
 	 * List of project packaging types that trigger pom.xml switch for publication.
 	 * Used by {@link #performSwitchPomXml}.
 	 */
-	@Parameter(property = "flatten.packagingSwitchList", defaultValue = "jar,war,ear,maven-plugin")
+	@Parameter(property = "flatten.packagingSwitchList", defaultValue = "jar,war,ear,bundle,maven-plugin")
 	String[] packagingSwitchList = new String[] {};
 
 	/**
@@ -182,10 +187,7 @@ public class FlattenMojo extends AbstractMojo {
 	 * <code>groupId:artifactId:type:version:scope -- module mod-name (mod-type)</code>.
 	 * Must provide exactly 5 regex capture groups.
 	 */
-	@Parameter( //
-			property = "flatten.dependencyRegex", //
-			defaultValue = "^\\s*([^:]+):([^:]+):([^:]+):([^:]+):([^:]+)\\s*.*$" //
-	)
+	@Parameter(property = "flatten.dependencyRegex", defaultValue = DEPENDENCY_REGEX)
 	String dependencyRegex;
 
 	/**

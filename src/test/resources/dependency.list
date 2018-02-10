@@ -1,0 +1,4 @@
+
+The following files have been resolved:
+   org.scala-lang.modules:scala-xml_2.12:jar:1.0.6:compile
+   org.sonatype.plexus:plexus-build-api:jar:0.0.7:compile -- module plexus.build.api (auto)
