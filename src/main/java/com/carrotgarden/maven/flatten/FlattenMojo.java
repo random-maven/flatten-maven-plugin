@@ -1,28 +1,23 @@
 package com.carrotgarden.maven.flatten;
 
-import static org.twdata.maven.mojoexecutor.MojoExecutor.*;
-import static org.codehaus.plexus.util.StringUtils.*;
+import static org.codehaus.plexus.util.StringUtils.isEmpty;
 
 import java.io.File;
-import java.io.StringWriter;
-import java.lang.reflect.Method;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
-import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.BuildPluginManager;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.descriptor.PluginDescriptor;
 import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -34,45 +29,54 @@ import org.sonatype.plexus.build.incremental.BuildContext;
 /**
  * Simplify Maven project pom.xml descriptor for publication.
  */
-@Mojo(name = "flatten", //
+@Mojo( //
+		name = "flatten", //
 		defaultPhase = LifecyclePhase.PREPARE_PACKAGE, //
 		requiresDependencyResolution = ResolutionScope.TEST, //
 		requiresProject = true)
-public class FlattenMojo extends AbstractMojo {
+public class FlattenMojo extends AbstractMojo implements Context {
 
 	/**
-	 * Default pattern to parse dependency:resolve report.
-	 */
-	static final String DEPENDENCY_REGEX = "^[\\s]*([^:\\s]+):([^:\\s]+):([^:\\s]+):([^:\\s]+):([^:\\s]+)[\\s]*.*$";
-
-	/**
-	 * Current maven project.
+	 * Current Maven project.
 	 */
 	@Parameter(defaultValue = "${project}", required = true, readonly = true)
 	MavenProject project;
 
 	/**
-	 * Current maven session.
+	 * Current Maven session.
 	 */
 	@Parameter(defaultValue = "${session}", required = true, readonly = true)
-	MavenSession session;
+	MavenSession mavenSession;
 
 	/**
 	 * Maven build plugin manager component.
 	 */
 	@Component()
-	BuildPluginManager manager;
+	BuildPluginManager buildManager;
 
 	/**
 	 * Eclipse integration context.
 	 */
 	@Component()
 	BuildContext buildContext;
+
+	/**
+	 * This plugin descriptor.
+	 */
+	@Parameter(defaultValue = "${plugin}", required = true, readonly = true)
+	PluginDescriptor pluginMeta;
+
 	/**
 	 * Flag to skip this goal execution.
 	 */
 	@Parameter(property = "flatten.skip", defaultValue = "false")
 	boolean skip;
+
+	/**
+	 * Propagate dependency exclusions during {@link #performDependencyResolve}.
+	 */
+	@Parameter(property = "flatten.resolveExclusions", defaultValue = "true")
+	boolean resolveExclusions;
 
 	/**
 	 * List of pom.xml model members to remove. Used by
@@ -103,30 +107,9 @@ public class FlattenMojo extends AbstractMojo {
 	File targetPomFile;
 
 	/**
-	 * Absolute file path for the resolved artifact dependency list. Used by
-	 * {@link #performDependencyResolve}.
-	 */
-	@Parameter(property = "flatten.resolveListFile", defaultValue = "${project.build.directory}/flatten/dependency.list")
-	File resolveListFile;
-
-	/**
-	 * Behavior of {@link #performDependencyResolve}: artifact scope descriptor to
-	 * include in the dependency resolution.
-	 */
-	@Parameter(property = "flatten.includeScope", defaultValue = "compile")
-	String includeScope;
-
-	/**
-	 * Behavior of {@link #performDependencyResolve}: exclude transitive dependency
-	 * artifacts from the resolution result.
-	 */
-	@Parameter(property = "flatten.excludeTransitive", defaultValue = "true")
-	boolean excludeTransitive;
-
-	/**
 	 * Execution step 1. Invoke {@code maven-dependency-plugin:resolve} to resolve
 	 * and filter project dependencies with {@link #includeScope},
-	 * {@link #excludeTransitive}. Alternative to step 2.
+	 * {@link #ecludeTransitive}. Alternative to step 2.
 	 * 
 	 * @see <a hfef=
 	 *      "https://maven.apache.org/plugins/maven-dependency-plugin/resolve-mojo.html">maven-dependency-plugin:resolve</a
@@ -183,14 +166,6 @@ public class FlattenMojo extends AbstractMojo {
 	String overrideArtifactId;
 
 	/**
-	 * Regular expression used to extract artifacts from dependency report. Format:
-	 * <code>groupId:artifactId:type:version:scope -- module mod-name (mod-type)</code>.
-	 * Must provide exactly 5 regex capture groups.
-	 */
-	@Parameter(property = "flatten.dependencyRegex", defaultValue = DEPENDENCY_REGEX)
-	String dependencyRegex;
-
-	/**
 	 * Use model char set with fall back to {@link #encoding}
 	 */
 	Charset modelCharset(Model model) {
@@ -199,58 +174,6 @@ public class FlattenMojo extends AbstractMojo {
 			encoding = this.encoding;
 		}
 		return Charset.forName(encoding);
-	}
-
-	/**
-	 * Serialize maven model into pom.xml file.
-	 */
-	void writePom(Model pomModel, File pomFile, Charset charset) throws Exception {
-		MavenXpp3Writer pomWriter = new MavenXpp3Writer();
-		StringWriter textWriter = new StringWriter(64 * 1024);
-		pomWriter.write(textWriter, pomModel);
-		String pomText = textWriter.toString();
-		Files.write(pomFile.toPath(), pomText.getBytes(charset));
-	}
-
-	/**
-	 * Find a model method by name and number of parameters.
-	 */
-	Method findMethod(Model model, String name, int count) throws Exception {
-		Method[] methodList = model.getClass().getMethods();
-		for (Method method : methodList) {
-			boolean hasName = name.equals(method.getName());
-			boolean hasCount = count == method.getParameterCount();
-			if (hasName && hasCount) {
-				return method;
-			}
-		}
-		throw new RuntimeException("Method not found: " + name);
-	}
-
-	/**
-	 * Capitalize first letter of a name.
-	 */
-	String capitalFirst(String name) {
-		return name.substring(0, 1).toUpperCase() + name.substring(1);
-	}
-
-	/**
-	 * Remove member with xml tag name from the maven model.
-	 */
-	void removeMember(Model model, String name) throws Exception {
-		String setter = "set" + capitalFirst(name);
-		Method method = findMethod(model, setter, 1);
-		method.invoke(model, new Object[] { null });
-	}
-
-	/**
-	 * Create parent directory tree for a file.
-	 */
-	void ensureParent(File file) {
-		File dir = file.getParentFile();
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
 	}
 
 	/**
@@ -266,84 +189,27 @@ public class FlattenMojo extends AbstractMojo {
 	}
 
 	/**
-	 * Remove model dependencies configured in {@link #scopeEraseList}.
+	 * Invoke another goal from this plugin.
 	 */
-	void removeScope(Model model, String scope) {
-		List<Dependency> source = model.getDependencies();
-		if (source == null || source.isEmpty()) {
-			return;
-		}
-		List<Dependency> target = new ArrayList<Dependency>();
-		for (Dependency dep : source) {
-			String depScope = dep.getScope();
-			if (!isEmpty(depScope) && depScope.equals(scope)) {
-				continue; // remove
-			} else {
-				target.add(dep); // keep
+	void executeSelfMojo(String goal) throws Exception {
+		Support.executePluginMojo(pluginMeta, buildManager, mavenSession, goal);
+	}
+
+	/**
+	 * Replace dependencies with result of goal="dependency:resolve".
+	 */
+	void resolveReplaceDependency(Model model) throws Exception {
+		Set<Artifact> artifactList = contextResolvedExtract();
+		List<Dependency> depenencyList = new ArrayList<Dependency>();
+		for (Artifact artifact : artifactList) {
+			Dependency dependency = new Dependency();
+			Support.resolveApplyDeclared(artifact, dependency);
+			if (resolveExclusions) {
+				Support.resolveApplyExclusions(model, artifact, dependency);
 			}
+			depenencyList.add(dependency);
 		}
-		model.setDependencies(target);
-	}
-
-	/**
-	 * Generate dependency resolution report.
-	 * 
-	 * @see <a href="https://github.com/TimMoore/mojo-executor">mojo-executor</a>
-	 * @see <a hfef=
-	 *      "https://maven.apache.org/plugins/maven-dependency-plugin/resolve-mojo.html">maven-dependency-plugin:resolve</a
-	 */
-	void reportDependency() throws Exception {
-		executeMojo( //
-				plugin( //
-						groupId("org.apache.maven.plugins"), //
-						artifactId("maven-dependency-plugin") //
-				), //
-				goal("resolve"), //
-				configuration( //
-						element("includeParents", "false"), //
-						element("appendOutput", "false"), //
-						element("outputScope", "true"), //
-						element("includeScope", includeScope), //
-						element("excludeTransitive", Boolean.toString(excludeTransitive)), //
-						element("outputFile", resolveListFile.getAbsolutePath()) //
-				), //
-				executionEnvironment(project, session, manager) //
-		);
-	}
-
-	/**
-	 * Parse report generated by dependency:resolve.
-	 */
-	List<Dependency> parseDependency(Model model) throws Exception {
-		Pattern pattern = Pattern.compile(dependencyRegex);
-		byte[] content = Files.readAllBytes(resolveListFile.toPath());
-		Charset charset = modelCharset(model);
-		String fileText = new String(content, charset);
-		String[] lineList = fileText.split("\n");
-		List<Dependency> result = new ArrayList<Dependency>();
-		for (String line : lineList) {
-			Matcher matcher = pattern.matcher(line);
-			if (matcher.find()) {
-				Dependency entry = new Dependency();
-				entry.setGroupId(matcher.group(1));
-				entry.setArtifactId(matcher.group(2));
-				entry.setType(matcher.group(3));
-				entry.setVersion(matcher.group(4));
-				entry.setScope(matcher.group(5));
-				result.add(entry);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Replace dependencies with dependency:resolve result.
-	 */
-	void resolveDependency(Model model) throws Exception {
-		ensureParent(resolveListFile);
-		reportDependency();
-		List<Dependency> dependencyList = parseDependency(model);
-		model.setDependencies(dependencyList);
+		model.setDependencies(depenencyList);
 	}
 
 	/**
@@ -351,7 +217,7 @@ public class FlattenMojo extends AbstractMojo {
 	 */
 	void eraseScopes(Model model) throws Exception {
 		for (String scope : scopeEraseList) {
-			removeScope(model, scope);
+			Support.removeScope(model, scope);
 		}
 	}
 
@@ -360,7 +226,7 @@ public class FlattenMojo extends AbstractMojo {
 	 */
 	void removeMembers(Model model) throws Exception {
 		for (String member : memberRemoveList) {
-			removeMember(model, member);
+			Support.removeMember(model, member);
 		}
 	}
 
@@ -370,8 +236,8 @@ public class FlattenMojo extends AbstractMojo {
 	void persistModel(Model model) throws Exception {
 		File file = targetPomFile;
 		Charset charset = modelCharset(model);
-		ensureParent(file);
-		writePom(model, file, charset);
+		Support.ensureParent(file);
+		Support.writePom(model, file, charset);
 		buildContext.refresh(file);
 	}
 
@@ -442,7 +308,8 @@ public class FlattenMojo extends AbstractMojo {
 			// Change pom.xml.flatten.
 			if (performDependencyResolve) {
 				getLog().info("Resolving dependencies.");
-				resolveDependency(flatModel);
+				executeSelfMojo("resolve");
+				resolveReplaceDependency(flatModel);
 			}
 			if (performEraseScopes) {
 				getLog().info("Erasing dependency scopes.");

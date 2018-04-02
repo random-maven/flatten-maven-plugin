@@ -1,11 +1,16 @@
 
 ### Flatten Maven Plugin
 
-[![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/mojohaus/versions-maven-plugin.svg?label=License)](http://www.apache.org/licenses/)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.carrotgarden.maven/flatten-maven-plugin/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.carrotgarden.maven/flatten-maven-plugin) 
-[![Download](https://api.bintray.com/packages/random-maven/maven/flatten-maven-plugin/images/download.svg) ](https://bintray.com/random-maven/maven/flatten-maven-plugin/_latestVersion)
-[![Travis Status](https://travis-ci.org/random-maven/flatten-maven-plugin.svg?branch=master)](https://travis-ci.org/random-maven/flatten-maven-plugin/builds)
+[![Project License][licence_icon]][licence_link]
+[![Travis Status][travis_icon]][travis_link]
+[![Appvey Status][appvey_icon]][appvey_link]
+[![Project Files][tokei_files_icon]][tokei_basic_link]
+[![Project Lines][tokei_lines_icon]][tokei_basic_link]
+[![Lines of Code][tokei_basic_icon]][tokei_basic_link]
 
+|         | Production Release | Development Release |
+|---------|--------------------|---------------------|
+| <h5>Install</h5> | [![Central][central_icon]][central_link] | [![Bintray][bintray_icon]][bintray_link] | 
 
 Similar plugins
 * [mojohaus/flatten-maven-plugin](https://github.com/mojohaus/flatten-maven-plugin)
@@ -70,7 +75,7 @@ mvn clean package -P flatten
 
                             <!-- Change published artifact identity. -->
                             <performOverrideIdentity>true</performOverrideIdentity>
-                            <overrideArtifactId>${project.artifactId}_2.12</overrideArtifactId>
+                            <overrideArtifactId>${project.artifactId}</overrideArtifactId>
 
                             <!-- Switch project from pom.xml to pom.xml.flatten. -->
                             <performSwitchPomXml>true</performSwitchPomXml>
@@ -101,3 +106,23 @@ git clone git@github.com:random-maven/flatten-maven-plugin.git
 cd flatten-maven-plugin
 ./mvnw.sh clean install -B -P skip-test
 ```
+
+[licence_icon]: https://img.shields.io/github/license/random-maven/flatten-maven-plugin.svg?label=License
+[licence_link]: http://www.apache.org/licenses/
+
+[travis_icon]: https://travis-ci.org/random-maven/flatten-maven-plugin.svg
+[travis_link]: https://travis-ci.org/random-maven/flatten-maven-plugin/builds
+
+[appvey_icon]: https://ci.appveyor.com/api/projects/status/5ena8xeyujneqqog?svg=true
+[appvey_link]: https://ci.appveyor.com/project/random-maven/flatten-maven-plugin/history 
+
+[tokei_files_icon]: https://tokei.rs/b1/github/random-maven/flatten-maven-plugin?category=files 
+[tokei_lines_icon]: https://tokei.rs/b1/github/random-maven/flatten-maven-plugin?category=lines 
+[tokei_basic_icon]: https://tokei.rs/b1/github/random-maven/flatten-maven-plugin
+[tokei_basic_link]: https://github.com/random-maven/flatten-maven-plugin 
+
+[central_icon]: https://maven-badges.herokuapp.com/maven-central/com.carrotgarden.maven/flatten-maven-plugin/badge.svg?style=plastic
+[central_link]: https://maven-badges.herokuapp.com/maven-central/com.carrotgarden.maven/flatten-maven-plugin
+
+[bintray_icon]: https://api.bintray.com/packages/random-maven/maven/flatten-maven-plugin/images/download.svg
+[bintray_link]: https://bintray.com/random-maven/maven/flatten-maven-plugin
