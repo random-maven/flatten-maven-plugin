@@ -1,9 +1,9 @@
 os: linux
-dist: trusty
+dist: xenial
 language: java
 jdk:
-- oraclejdk8
-- oraclejdk9
+- openjdk8
+- openjdk11
 cache:
   directories:
   - "$HOME/.m2" 

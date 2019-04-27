@@ -203,7 +203,12 @@ public class FlattenMojo extends AbstractMojo implements Context {
 		List<Dependency> depenencyList = new ArrayList<Dependency>();
 		for (Artifact artifact : artifactList) {
 			Dependency dependency = new Dependency();
-			Support.resolveApplyDeclared(artifact, dependency);
+			boolean hasSystem = "system".equals(artifact.getScope());
+			if (hasSystem) {
+				throw new RuntimeException("TODO: scope=system");
+			} else {
+				Support.resolveApplyDeclared(artifact, dependency);
+			}
 			if (resolveExclusions) {
 				Support.resolveApplyExclusions(model, artifact, dependency);
 			}

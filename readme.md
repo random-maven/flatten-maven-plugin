@@ -4,8 +4,6 @@
 [![Project License][licence_icon]][licence_link]
 [![Travis Status][travis_icon]][travis_link]
 [![Appvey Status][appvey_icon]][appvey_link]
-[![Project Files][tokei_files_icon]][tokei_basic_link]
-[![Project Lines][tokei_lines_icon]][tokei_basic_link]
 [![Lines of Code][tokei_basic_icon]][tokei_basic_link]
 
 |         | Production Release | Development Release |
@@ -113,11 +111,9 @@ cd flatten-maven-plugin
 [travis_icon]: https://travis-ci.org/random-maven/flatten-maven-plugin.svg
 [travis_link]: https://travis-ci.org/random-maven/flatten-maven-plugin/builds
 
-[appvey_icon]: https://ci.appveyor.com/api/projects/status/5ena8xeyujneqqog?svg=true
+[appvey_icon]: https://ci.appveyor.com/api/projects/status/51tica25mhpu3u3l?svg=true
 [appvey_link]: https://ci.appveyor.com/project/random-maven/flatten-maven-plugin/history 
 
-[tokei_files_icon]: https://tokei.rs/b1/github/random-maven/flatten-maven-plugin?category=files 
-[tokei_lines_icon]: https://tokei.rs/b1/github/random-maven/flatten-maven-plugin?category=lines 
 [tokei_basic_icon]: https://tokei.rs/b1/github/random-maven/flatten-maven-plugin
 [tokei_basic_link]: https://github.com/random-maven/flatten-maven-plugin 
 
