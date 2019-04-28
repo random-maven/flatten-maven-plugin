@@ -1389,7 +1389,7 @@
 				<plugin>
 					<groupId>com.carrotgarden.maven</groupId>
 					<artifactId>flatten-maven-plugin</artifactId>
-					<version>1.4.20180402132337</version>
+					<version>1.5.20190427220340</version>
 				</plugin>
 
 				<plugin>
@@ -1401,13 +1401,21 @@
 				<plugin>
 					<groupId>org.codehaus.plexus</groupId>
 					<artifactId>plexus-component-metadata</artifactId>
-					<version>1.7.1</version>
+					<version>2.0.0</version>
+					<dependencies>
+						<!-- Java 11 support. -->
+						<dependency>
+							<groupId>org.ow2.asm</groupId>
+							<artifactId>asm</artifactId>
+							<version>7.1</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>flatten-maven-plugin</artifactId>
-					<version>1.0.1</version>
+					<version>1.1.0</version>
 				</plugin>
 
 				<plugin>
@@ -1425,7 +1433,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>versions-maven-plugin</artifactId>
-					<version>2.5</version>
+					<version>2.7</version>
 					<configuration>
 						<rulesUri>https://raw.githubusercontent.com/random-maven/arkon/master/config/maven-version-rules.xml</rulesUri>
 					</configuration>
@@ -1434,7 +1442,7 @@
 				<plugin>
 					<groupId>io.takari.maven.plugins</groupId>
 					<artifactId>takari-lifecycle-plugin</artifactId>
-					<version>1.13.4</version>
+					<version>1.13.9</version>
 				</plugin>
 
 				<plugin>
@@ -1487,25 +1495,25 @@
 				<plugin>
 					<groupId>net.nicoulaj.maven.plugins</groupId>
 					<artifactId>checksum-maven-plugin</artifactId>
-					<version>1.6</version>
+					<version>1.8</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jarsigner-plugin</artifactId>
-					<version>1.4</version>
+					<version>3.0.0</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
-					<version>3.1.1</version>
+					<version>3.2.1</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-invoker-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.2.0</version>
 					<configuration>
 						<debug>false</debug>
 						<showErrors>false</showErrors>
@@ -1562,7 +1570,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-plugin-plugin</artifactId>
-					<version>3.5.2</version>
+					<version>3.6.0</version>
 				</plugin>
 
 				<plugin>
@@ -1586,7 +1594,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-help-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.2.0</version>
 				</plugin>
 
 				<plugin>
@@ -1610,7 +1618,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.1.1</version>
 				</plugin>
 
 				<plugin>
@@ -1634,7 +1642,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.1.1</version>
 				</plugin>
 
 				<plugin>
@@ -1652,7 +1660,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.7.0</version>
+					<version>3.8.0</version>
 				</plugin>
 
 				<plugin>
@@ -1701,7 +1709,7 @@
 				<plugin>
 					<groupId>org.codehaus.gmaven</groupId>
 					<artifactId>groovy-maven-plugin</artifactId>
-					<version>2.0</version>
+					<version>2.1</version>
 					<dependencies>
 						<dependency>
 							<groupId>org.codehaus.groovy</groupId>
@@ -1789,7 +1797,7 @@
 				<plugin>
 					<groupId>net.alchim31.maven</groupId>
 					<artifactId>scala-maven-plugin</artifactId>
-					<version>3.4.0</version>
+					<version>4.0.1</version>
 				</plugin>
 
 				<plugin>
@@ -1841,7 +1849,7 @@
 				<plugin>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
-					<version>3.5.0</version>
+					<version>4.2.0</version>
 				</plugin>
 
 				<plugin>

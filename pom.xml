@@ -33,7 +33,7 @@
     <description>Simplify Maven project descriptor for publication</description>
 
     <properties>
-        <release.epoch>1.5</release.epoch>
+        <release.epoch>1.6</release.epoch>
         <version.java>1.8</version.java>
         <version.maven>[3.5,3.6)</version.maven>
         <bintray.subject>random-maven</bintray.subject>
@@ -114,7 +114,7 @@
             <plugin>
                 <groupId>com.carrotgarden.maven</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.4.20180402132337</version>
+                <version>1.5.20190427220340</version>
             </plugin>
 
             <!-- Generate plugin descriptor. -->

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.ArtifactUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
@@ -198,23 +199,35 @@ public class FlattenMojo extends AbstractMojo implements Context {
 	/**
 	 * Replace dependencies with result of goal="dependency:resolve".
 	 */
-	void resolveReplaceDependency(Model model) throws Exception {
-		Set<Artifact> artifactList = contextResolvedExtract();
-		List<Dependency> depenencyList = new ArrayList<Dependency>();
-		for (Artifact artifact : artifactList) {
-			Dependency dependency = new Dependency();
-			boolean hasSystem = "system".equals(artifact.getScope());
+	void resolveReplaceDependency(Model baseModel, Model flatModel) throws Exception {
+		Set<Artifact> resolvedArtifactList = contextResolvedExtract();
+		List<Dependency> baseDependencyList = baseModel.getDependencies();
+		List<Dependency> flatDependencyList = new ArrayList<Dependency>();
+		for (Artifact resolvedArtifact : resolvedArtifactList) {
+			
+			Dependency flatDependency = new Dependency();
+			Support.resolveApplyDeclared(resolvedArtifact, flatDependency);
+			
+			// TODO improve on this hack.
+			boolean hasSystem = "system".equals(resolvedArtifact.getScope());
 			if (hasSystem) {
-				throw new RuntimeException("TODO: scope=system");
-			} else {
-				Support.resolveApplyDeclared(artifact, dependency);
+				// FIXME may not match iterpolated artifact vs non-iterpolated dependency.
+				Dependency baseDependency = Support.resolveLocateMatching(baseDependencyList, resolvedArtifact);
+				if (baseDependency == null) {
+					String artifactKey = ArtifactUtils.key(resolvedArtifact);
+					getLog().warn("no matching artifact: " + artifactKey);
+				} else {
+					flatDependency.setSystemPath(baseDependency.getSystemPath());
+				}
 			}
+			
 			if (resolveExclusions) {
-				Support.resolveApplyExclusions(model, artifact, dependency);
+				Support.resolveApplyExclusions(baseModel, resolvedArtifact, flatDependency);
 			}
-			depenencyList.add(dependency);
+			
+			flatDependencyList.add(flatDependency);
 		}
-		model.setDependencies(depenencyList);
+		flatModel.setDependencies(flatDependencyList);
 	}
 
 	/**
@@ -242,7 +255,7 @@ public class FlattenMojo extends AbstractMojo implements Context {
 		File file = targetPomFile;
 		Charset charset = modelCharset(model);
 		Support.ensureParent(file);
-		Support.writePom(model, file, charset);
+		Support.modelWrite(model, file, charset);
 		buildContext.refresh(file);
 	}
 
@@ -301,20 +314,24 @@ public class FlattenMojo extends AbstractMojo implements Context {
 			getLog().info("Skipping plugin goal execution.");
 			return;
 		}
+		// Original model location.
 		File sourcePomFile = project.getModel().getPomFile();
 		try {
-			buildContext.removeMessages(sourcePomFile);
 
-			// Note: after clone():
-			// - do not interpolate anything any more
-			// - only remove content or add static content
+			// Original read-only model, not interpolated.
+			Model baseModel = Support.modelRead(sourcePomFile, modelCharset(project.getModel()));
+
+			// Generated updatable model, already interpolated.
 			final Model flatModel = project.getModel().clone();
+
+			// Clear error markers in IDE.
+			buildContext.removeMessages(sourcePomFile);
 
 			// Change pom.xml.flatten.
 			if (performDependencyResolve) {
 				getLog().info("Resolving dependencies.");
 				executeSelfMojo("resolve");
-				resolveReplaceDependency(flatModel);
+				resolveReplaceDependency(baseModel, flatModel);
 			}
 			if (performEraseScopes) {
 				getLog().info("Erasing dependency scopes.");
@@ -344,6 +361,7 @@ public class FlattenMojo extends AbstractMojo implements Context {
 			}
 		} catch (Throwable e) {
 			String message = "Flatten failure";
+			// Show error markers in IDE.
 			buildContext.addMessage(sourcePomFile, 1, 1, message, BuildContext.SEVERITY_ERROR, e);
 			throw new MojoFailureException(message, e);
 		}

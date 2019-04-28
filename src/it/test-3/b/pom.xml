@@ -1,45 +1,54 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.carrotgarden.maven</groupId>
-        <artifactId>flatten-maven-plugin-test-3</artifactId>
-        <version>${revision}</version>
-    </parent>
+	<parent>
+		<groupId>com.carrotgarden.maven</groupId>
+		<artifactId>flatten-maven-plugin-test-3</artifactId>
+		<version>${revision}</version>
+	</parent>
 
-    <description>Consume scala identity.</description>
+	<description>Consume scala identity.</description>
 
-    <groupId>com.carrotgarden.maven</groupId>
-    <artifactId>flatten-maven-plugin-test-3b</artifactId>
-    <version>${revision}</version>
+	<groupId>com.carrotgarden.maven</groupId>
+	<artifactId>flatten-maven-plugin-test-3b</artifactId>
+	<version>${revision}</version>
 
-    <dependencies>
+	<dependencies>
 
-        <!-- Depends on scala identity. -->
-        <dependency>
-            <groupId>com.carrotgarden.maven</groupId>
-            <artifactId>flatten-maven-plugin-test-3a_${vesion.scala.gen}</artifactId>
-            <version>${revision}</version>
-        </dependency>
+		<!-- Depends on scala identity. -->
+		<dependency>
+			<groupId>com.carrotgarden.maven</groupId>
+			<artifactId>flatten-maven-plugin-test-3a_${vesion.scala.gen}</artifactId>
+			<version>${revision}</version>
+		</dependency>
 
-    </dependencies>
+		<!-- Verify system scope resolution. -->
+		<dependency>
+			<groupId>system-group</groupId>
+			<artifactId>system-artifact</artifactId>
+			<version>0.0.0</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/lib/tzdb.dat</systemPath>
+		</dependency>
 
-    <build>
-        <plugins>
+	</dependencies>
 
-            <plugin>
-                <groupId>com.carrotgarden.maven</groupId>
-                <artifactId>flatten-maven-plugin</artifactId>
-                <version>@project.version@</version>
-                <configuration>
-                    <performOverrideIdentity>true</performOverrideIdentity>
-                    <overrideArtifactId>${project.artifactId}_${vesion.scala.gen}</overrideArtifactId>
-                </configuration>
-            </plugin>
+	<build>
+		<plugins>
 
-        </plugins>
-    </build>
+			<plugin>
+				<groupId>com.carrotgarden.maven</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>@project.version@</version>
+				<configuration>
+					<performOverrideIdentity>true</performOverrideIdentity>
+					<overrideArtifactId>${project.artifactId}_${vesion.scala.gen}</overrideArtifactId>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
 
 </project>

@@ -3,6 +3,7 @@ package com.carrotgarden.maven.flatten;
 import static org.codehaus.plexus.util.StringUtils.isEmpty;
 
 import java.io.File;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -18,6 +19,7 @@ import org.apache.maven.model.Dependency;
 import org.apache.maven.model.DependencyManagement;
 import org.apache.maven.model.Exclusion;
 import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.apache.maven.plugin.BuildPluginManager;
 import org.apache.maven.plugin.MojoExecution;
@@ -173,6 +175,9 @@ public class Support {
 	 * Locate dependency matching an artifact.
 	 */
 	public static Dependency resolveLocateMatching(List<Dependency> depenendencyList, Artifact artifact) {
+		if (depenendencyList == null || artifact == null) {
+			return null;
+		}
 		for (Dependency dependency : depenendencyList) {
 			boolean hasType = StringUtils.equals(dependency.getType(), artifact.getType());
 			boolean hasGroup = StringUtils.equals(dependency.getGroupId(), artifact.getGroupId());
@@ -201,9 +206,21 @@ public class Support {
 	}
 
 	/**
+	 * Deserialize Maven model from pom.xml file.
+	 */
+	public static Model modelRead(File pomFile, Charset charset) throws Exception {
+		List<String> pomLines = Files.readAllLines(pomFile.toPath(), charset);
+		String pomText = StringUtils.join(pomLines, "\n");
+		StringReader textReader = new StringReader(pomText);
+		MavenXpp3Reader pomReader = new MavenXpp3Reader();
+		Model pomModel = pomReader.read(textReader);
+		return pomModel;
+	}
+
+	/**
 	 * Serialize Maven model into pom.xml file.
 	 */
-	public static void writePom(Model pomModel, File pomFile, Charset charset) throws Exception {
+	public static void modelWrite(Model pomModel, File pomFile, Charset charset) throws Exception {
 		MavenXpp3Writer pomWriter = new MavenXpp3Writer();
 		StringWriter textWriter = new StringWriter(64 * 1024);
 		pomWriter.write(textWriter, pomModel);
