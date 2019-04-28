@@ -33,7 +33,7 @@
     <description>Simplify Maven project descriptor for publication</description>
 
     <properties>
-        <release.epoch>1.6</release.epoch>
+        <release.epoch>1.7</release.epoch>
         <version.java>1.8</version.java>
         <version.maven>[3.5,3.6)</version.maven>
         <bintray.subject>random-maven</bintray.subject>
