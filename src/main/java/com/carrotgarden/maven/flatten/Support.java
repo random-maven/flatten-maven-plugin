@@ -137,6 +137,7 @@ public class Support {
 		dependency.setType(artifact.getType());
 		dependency.setScope(artifact.getScope());
 		dependency.setClassifier(artifact.getClassifier());
+		dependency.setOptional(artifact.isOptional());
 	}
 
 	/**
