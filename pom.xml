@@ -114,7 +114,7 @@
             <plugin>
                 <groupId>com.carrotgarden.maven</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.5.20190427220340</version>
+                <version>1.6.20190428102750</version>
             </plugin>
 
             <!-- Generate plugin descriptor. -->
