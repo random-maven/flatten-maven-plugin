@@ -64,7 +64,7 @@
         <version.akka.main>2.5.22</version.akka.main>
         <version.akka.http>10.1.8</version.akka.http>
         <version.eventuate>0.8.1</version.eventuate>
-        <version.play>2.7.2</version.play>
+        <version.play>2.8.2</version.play>
         <version.scala.buff>1.4.0</version.scala.buff>
         <version.scala.mock>3.6.0</version.scala.mock>
         <version.specs2>4.5.1</version.specs2>
