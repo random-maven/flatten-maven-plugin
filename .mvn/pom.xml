@@ -97,7 +97,7 @@
         <version.scala.plugin.native>${version.scalanat.release}</version.scala.plugin.native>
 
 		<!-- JUnit Testing -->
-        <version.junit.legacy>4.12</version.junit.legacy>
+        <version.junit.legacy>4.13.1</version.junit.legacy>
         <version.junit.platform>1.3.2</version.junit.platform>
         <version.junit.jupiter>5.4.2</version.junit.jupiter>
         <version.junit.vintage>5.4.2</version.junit.vintage>
