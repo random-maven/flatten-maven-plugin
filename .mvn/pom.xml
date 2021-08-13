@@ -53,7 +53,7 @@
         <version.amazon.sdk>1.11.550</version.amazon.sdk>
         <version.sigar>1.6.5.132</version.sigar>
         <version.aspectj>1.9.4</version.aspectj>
-        <version.bouncy>1.61</version.bouncy>
+        <version.bouncy>1.67</version.bouncy>
 
 		<!-- Scala stack. -->
         <version.scala.epoch>2.12</version.scala.epoch>
