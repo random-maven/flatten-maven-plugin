@@ -110,7 +110,7 @@
 		<!-- Database providers. -->
         <version.slick>3.3.0</version.slick>
         <version.hikari>3.3.1</version.hikari>
-        <version.postgres>42.2.5</version.postgres>
+        <version.postgres>42.4.1</version.postgres>
 
 		<!-- Carrot Garden internal repository. -->
         <repo.amazon.public.host>public.maven.carrotgarden.com</repo.amazon.public.host>
